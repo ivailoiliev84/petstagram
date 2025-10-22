@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+    /* fluid padding, hard max width */
+    width: min(100% - 2rem, 1200px);
+    margin-inline: auto;
+}
