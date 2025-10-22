@@ -1,5 +1,10 @@
-@import url('navigation.css');
-@import url('main_section.css');
-@import url('/static/home/css/home.css');
-@import url('/static/home/css/home_gallery.css');
-@import url('footer.css');
+/* Main content wrapper */
+#main-section {
+  max-width: 1270px;     /* your global layout width */
+  margin: 0 auto;        /* center on the page */
+  padding: 0 1rem;       /* little side space for small screens */
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* center inner sections horizontally */
+  gap: 2rem;             /* spacing between sections */
+}

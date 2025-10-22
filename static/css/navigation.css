@@ -1,17 +1,4 @@
 /* --- Base / Reset (minimal) --- */
-:root {
-  --bg: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --brand: #111827;
-  --accent: #2563eb;
-  --border: #e5e7eb;
-
-  --container: 68.75rem; /* 1100px */
-  --radius: 0.75rem;     /* 12px */
-
-  --tap: 2.75rem;        /* 44px */
-}
 
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
