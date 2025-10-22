@@ -5,21 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Petstagram{% endblock %}</title>
-
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
 </head>
 
 <body>
-   {% include 'navigation.html'%}
+    {% include 'navigation.html' %}
 
-    <main>
+    <main id="main-section">
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer>
-        <p>© 2025 Petstagram</p>
-    </footer>
+    {% include 'footer.html' %}
 </body>
 </html>

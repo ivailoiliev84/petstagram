@@ -20,17 +20,26 @@
       </svg>
       <span class="sr-only">Menu</span>
     </button>
-
-    <!-- Nav links -->
+    {% if user.is_authenticated%}
+      <!-- Nav links -->
+      <nav id="primary-nav" class="primary-nav" aria-label="Main">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="#">Explore</a></li>
+          <li><a href="#">About</a></li>
+          <!-- Example CTA -->
+          <li class="cta"><a href="#">Upload</a></li>
+        </ul>
+      </nav>
+    {% else %}
     <nav id="primary-nav" class="primary-nav" aria-label="Main">
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="#">Explore</a></li>
-        <li><a href="#">About</a></li>
-        <!-- Example CTA -->
-        <li class="cta"><a href="#">Upload</a></li>
-      </ul>
-    </nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="#">Login</a></li>
+          <li><a href="#">Register</a></li>
+        </ul>
+      </nav>
+    {% endif %}
   </div>
 </header>
 

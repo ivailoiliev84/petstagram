@@ -1,4 +1,21 @@
-#welcome-world {
+#home-cover-section {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+/* Home cover section */
+#home-cover-section {
+  width: 100%;
+  max-width: 1270px;   /* match your body container width */
+  margin: 0 auto;      /* center on large screens */
+  overflow: hidden;    /* clip overflow if image scales */
+}
+
+#home-cover-section  img {
+  width: 100%;         /* scale image to container width */
+  height: auto;        /* keep natural aspect ratio */
+  display: block;      /* remove inline gaps */
+  object-fit: cover;   /* make sure it looks good if you later fix height */
+  border-radius: 0;    /* optional: you can add rounded corners later */
 }
