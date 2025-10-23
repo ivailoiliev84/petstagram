@@ -27,6 +27,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="#">Explore</a></li>
           <li><a href="#">About</a></li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
           <!-- Example CTA -->
           <li class="cta"><a href="#">Upload</a></li>
         </ul>
@@ -35,8 +36,8 @@
     <nav id="primary-nav" class="primary-nav" aria-label="Main">
         <ul>
           <li><a href="/">Home</a></li>
-          <li><a href="#">Login</a></li>
-          <li><a href="#">Register</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Register</a></li>
         </ul>
       </nav>
     {% endif %}

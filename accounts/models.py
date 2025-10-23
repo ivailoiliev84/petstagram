@@ -7,8 +7,6 @@ from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
-
-
 class AppUserManager(BaseUserManager):
     def _create_user(self, email, password, **extra_fields):
         """
@@ -63,7 +61,7 @@ class AppUser(AbstractBaseUser, PermissionsMixin):
     objects = AppUserManager()
 
 
-class Profile(models.Model):
+class UserProfile(models.Model):
     FIRST_NAME_MAX_LENGTH = 30
     FIRST_NAME_MIN_LENGTH = 2
 
@@ -77,14 +75,17 @@ class Profile(models.Model):
 
     first_name = models.CharField(
         max_length=FIRST_NAME_MAX_LENGTH,
+        blank=True,
+        null=True,
         validators=(
             MinLengthValidator(FIRST_NAME_MIN_LENGTH),
         )
-
     )
 
     last_name = models.CharField(
         max_length=30,
+        blank=True,
+        null=True,
         validators=(
             MinLengthValidator(LAST_NAME_MIN_LENGTH),
         )
@@ -123,5 +124,4 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
-    
-    
+     

@@ -1,10 +1,19 @@
-/* Main content wrapper */
+:root { --header-h: 64px; --footer-h: 80px; } /* adjust to your real sizes */
+
+/* Let the main area grow and push footer down */
+main {
+  flex: 1;
+}
+
+/* Your existing content layout */
 #main-section {
-  max-width: 1270px;     /* your global layout width */
-  margin: 0 auto;        /* center on the page */
-  padding: 0 1rem;       /* little side space for small screens */
+  min-height: calc(100svh - var(--header-h) - var(--footer-h));
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  align-items: center;   /* center inner sections horizontally */
-  gap: 2rem;             /* spacing between sections */
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }
