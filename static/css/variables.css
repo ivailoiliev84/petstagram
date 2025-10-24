@@ -1,13 +1,14 @@
 :root {
-  --bg: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --brand: #111827;
-  --accent: #2563eb;
-  --border: #e5e7eb;
+  --bg: #ffffff;        /* main background */
+  --text: #111827;      /* body text */
+  --muted: #6b7280;     /* secondary text / subdued */
+  --brand: #111827;     /* brand color (logo/text) */
+  --accent: #2563eb;    /* main highlight color (blue) */
+  --accent-hover: #1d4ed8;   /* darker blue for hover */
+  --accent-text: #ffffff;    /* text on accent buttons */
+  --border: #e5e7eb;    /* light border color */
 
-  --container: 68.75rem; /* 1100px */
-  --radius: 0.75rem;     /* 12px */
-
-  --tap: 2.75rem;        /* 44px */
+  --container: 68.75rem; /* layout width (1100px) */
+  --radius: 0.75rem;     /* global border-radius (12px) */
+  --tap: 2.75rem;        /* min touch size (44px) */
 }

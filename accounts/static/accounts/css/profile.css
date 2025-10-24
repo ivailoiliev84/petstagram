@@ -1,0 +1,69 @@
+#profile-section {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 2rem 1rem;
+    gap: 2rem;
+}
+
+/* Profile wrapper */
+.main-div-profile-info {
+  display: flex;
+  /* align-items: center;
+  justify-content: center; */
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 2rem;
+  width: 50%;
+  max-width: 50rem; /* ~800px */
+}
+
+/* Profile image */
+.profile-image {
+  width: 50%;
+  flex: 0 0 19.375rem; /* 150px → 9.375rem */
+  height: 19.375rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 0.125rem solid #ccc;
+}
+
+/* Image itself */
+.profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Profile text */
+.profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Responsive tweak */
+@media (max-width: 37.5rem) { /* 600px */
+  .profile-image {
+    flex: 0 0 6.25rem; /* 100px → 6.25rem */
+    height: 6.25rem;
+  }
+
+  .profile-info p {
+    font-size: 0.9rem;
+  }
+}
+
+.profile-latest-posts {
+    width: 50%;
+
+}   
+
+.no-posts-container img {
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background-color: #ccc;
+}

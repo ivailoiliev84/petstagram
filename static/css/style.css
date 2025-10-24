@@ -35,3 +35,34 @@ body {
   justify-content: center;
   gap: 2rem;
 }
+
+
+
+button,
+.btn,
+button.btn {
+  background-color: var(--accent);
+  color: var(--accent-text);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.98);
+}
+
+button:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

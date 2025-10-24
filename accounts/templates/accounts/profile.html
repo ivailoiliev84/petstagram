@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block content %}
 <section id="profile-section">
-    <div class="main-div">
+    <div class="main-div-profile-info">
         <div class="profile-image">
             <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="">
         </div>
-        
+        <div class="profile-info">
+            <p>N/A</p>
+            <p>N/A</p>
+            <p>N/A</p>
+            <p>N/A</p>
+        </div>
+    </div>
+    <div class="profile-latest-posts">
+        {% if not last_posts %}
+        <h1>You not have posts yet</h1>
+        {% else %}
+            <h1>You latest posts</h1>
+        {% endif %}
+        <div class="no-posts-container">
+            <img src="{% static 'accounts/images/no_posts.jpg' %}" alt="">
+        </div>
     </div>
 
 </section>
+{% endblock %}
 
