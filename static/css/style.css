@@ -5,6 +5,24 @@ main {
   flex: 1;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+        "Apple Color Emoji", "Segoe UI Emoji";
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+}
+
 /* Your existing content layout */
 #main-section {
   min-height: calc(100svh - var(--header-h) - var(--footer-h));

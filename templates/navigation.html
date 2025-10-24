@@ -1,60 +1,90 @@
 <header class="site-header">
-  <div class="nav-container">
-    <a href="/" class="brand">
-      <span class="logo" aria-hidden="true">🐾</span>
-      <span class="brand-text">Petstagram</span>
-    </a>
+    <div class="nav-container">
+        <a href="/" class="brand">
+            <span class="logo" aria-hidden="true">🐾</span>
+            <span class="brand-text">Petstagram</span>
+        </a>
 
-    <!-- Mobile toggle -->
-    <button
-      class="nav-toggle"
-      aria-label="Toggle menu"
-      aria-controls="primary-nav"
-      aria-expanded="false"
-      id="navToggle"
-      type="button"
-    >
-      <!-- Simple burger icon -->
-      <svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-        <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" fill="none" />
-      </svg>
-      <span class="sr-only">Menu</span>
-    </button>
-    {% if user.is_authenticated%}
-      <!-- Nav links -->
-      <nav id="primary-nav" class="primary-nav" aria-label="Main">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="#">Explore</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>  
-          <!-- Example CTA -->
-          <!-- <li class="cta"><a href="#">Upload</a></li> -->
-        </ul>
-        
-      </nav>
-    {% else %}
-    <nav id="primary-nav" class="primary-nav" aria-label="Main">
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="{% url 'login' %}">Login</a></li>
-          <li><a href="{% url 'register' %}">Register</a></li>
-        </ul>
-      </nav>
-    {% endif %}
-  </div>
+        <!-- Mobile toggle -->
+        <button
+            class="nav-toggle"
+            aria-label="Toggle menu"
+            aria-controls="primary-nav"
+            aria-expanded="false"
+            id="navToggle"
+            type="button"
+        >
+            <!-- Simple burger icon -->
+            <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                aria-hidden="true"
+            >
+                <path
+                    d="M3 6h18M3 12h18M3 18h18"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    fill="none"
+                />
+            </svg>
+            <span class="sr-only">Menu</span>
+        </button>
+        {% if user.is_authenticated%}
+        <!-- Nav links -->
+        <nav id="primary-nav" class="primary-nav" aria-label="Main">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="#">Explore</a></li>
+                <li><a href="#">About</a></li>
+                <!-- Example CTA -->
+                <!-- <li class="cta"><a href="#">Upload</a></li> -->
+                <li class="dropdown">
+                    <button
+                        class="btn btn-secondary dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        Profile
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">Another action</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{% url 'logout' %}"
+                                >Logout</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        {% else %}
+        <nav id="primary-nav" class="primary-nav" aria-label="Main">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
 </header>
 
 <script>
-  // Small, accessible toggle
-  (function () {
-    const btn = document.getElementById('navToggle');
-    const menu = document.getElementById('primary-nav');
+    // Small, accessible toggle
+    (function () {
+        const btn = document.getElementById("navToggle");
+        const menu = document.getElementById("primary-nav");
 
-    btn?.addEventListener('click', () => {
-      const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      menu.classList.toggle('open', !expanded);
-    });
-  })();
+        btn?.addEventListener("click", () => {
+            const expanded = btn.getAttribute("aria-expanded") === "true";
+            btn.setAttribute("aria-expanded", String(!expanded));
+            menu.classList.toggle("open", !expanded);
+        });
+    })();
 </script>
