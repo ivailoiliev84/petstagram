@@ -23,7 +23,6 @@ class UserRegisterView(View):
             return render(request, "accounts/register.html", {"form": form})
         
 
-
 class UserLoginView(View):
 
     def get(self, request):
@@ -44,3 +43,10 @@ class UserLogoutView(LoginRequiredMixin, View):
     def get(self, request):
         logout(request)
         return redirect('home')
+    
+ 
+class UserProfileView(LoginRequiredMixin, View):
+     
+     def get(self, request):
+        return render(request, 'accounts/profile.html')
+     

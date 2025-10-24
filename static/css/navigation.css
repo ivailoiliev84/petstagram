@@ -1,5 +1,6 @@
 /* --- Base / Reset (minimal) --- */
 
+
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 body {
@@ -71,6 +72,7 @@ body {
   color: var(--text);
   cursor: pointer;
 }
+
 .nav-toggle .icon { display: block; }
 
 /* Primary nav — closed by default on mobile */
