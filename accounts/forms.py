@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model, authenticate
+from accounts.models import UserProfile
 
 User = get_user_model()
 
@@ -57,4 +58,8 @@ class UserLoginForm(forms.Form):
         return getattr(self, "user", None)
     
 
+class EditUserProfileForm(forms.ModelForm):
 
+    class Meta:
+        model = UserProfile
+        exclude = ("user",)

@@ -4,18 +4,24 @@
 <section id="profile-section">
     <div class="main-div-profile-info">
         <div class="profile-image">
-            <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="">
+            {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="">
+            {% else %}
+                <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="">
+            {% endif %}
         </div>
         <div class="profile-info">
-            <p>N/A</p>
-            <p>N/A</p>
-            <p>N/A</p>
-            <p>N/A</p>
+            <p>Email: {{ user.email }}</p>
+            <p>First name: {{ profile.first_name }}</p>
+            <p>Last name: {{ profile.last_name }}</p>
         </div>
+        <a href="{% url 'profile_edit' request.user.id %}" class="btn btn-primary">
+            Edit Profile
+        </a>
     </div>
     <div class="profile-latest-posts">
         {% if not last_posts %}
-        <h1>You not have posts yet</h1>
+        <h1>You don't have any posts yet</h1>
         {% else %}
             <h1>You latest posts</h1>
         {% endif %}
@@ -26,4 +32,3 @@
 
 </section>
 {% endblock %}
-

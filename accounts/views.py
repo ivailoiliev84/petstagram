@@ -3,7 +3,8 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.forms import UserCreationForm, UserLoginForm
+from accounts.forms import UserCreationForm, UserLoginForm, EditUserProfileForm
+from accounts.models import UserProfile
 # Create your views here.
 
 class UserRegisterView(View):
@@ -45,8 +46,36 @@ class UserLogoutView(LoginRequiredMixin, View):
         return redirect('home')
     
  
-class UserProfileView(LoginRequiredMixin, View):
+class UserProfileDetailsView(LoginRequiredMixin, View):
+    profile_details_template = "accounts/profile.html"
+    
+    def get(self, request, pk):
+        print(pk)
+        profile = UserProfile.objects.get(user_id=pk)
+        context = {'profile': profile}
+        print(profile)
+        return render(request, self.profile_details_template, context)
      
-     def get(self, request):
-        return render(request, 'accounts/profile.html')
-     
+
+class UserProfileEditView(LoginRequiredMixin, View):
+
+    
+    profile_edit_template = 'accounts/profile_edit.html'
+
+    def get(self, request, pk):
+        form = EditUserProfileForm()
+
+        profile = UserProfile.objects.get(user_id=pk)
+
+        
+        return render(request, self.profile_edit_template, {'form': form})
+    
+    def post(self, request, pk):
+        profile = UserProfile.objects.get(user_id=pk)
+        form = EditUserProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            form.save()
+
+            return redirect('profile', pk=pk)
+        return redirect(request, self.profile_details_template, {'profile': profile})
+    
