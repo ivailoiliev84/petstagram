@@ -44,6 +44,10 @@
   justify-content: center;
 }
 
+.profile-edit-btn-container {
+  text-align: center;
+}
+
 /* Responsive tweak */
 @media (max-width: 37.5rem) { /* 600px */
   .profile-image {

@@ -29,7 +29,11 @@ SECRET_KEY = 'django-insecure-n*$4)k3b)%t%&e=cj-(_ia3r(8c=xru1vp3%!7w!e&p7*o$ezw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# For mobile testing
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.12"]  # or "192.168.0.142" if you’ll use Ethernet
+CSRF_TRUSTED_ORIGINS = ["http://192.168.0.12:8000"]  # Django 4+
+
+
 
 
 # Application definition

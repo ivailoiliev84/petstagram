@@ -11,7 +11,6 @@ class UserCreationForm(UserCreationForm):
         model = User
         fields = ("email", "password1", "password2")
 
-        
         widgets = {
             "email": forms.EmailInput(attrs={
                 "placeholder": "you@example.com",
@@ -63,3 +62,17 @@ class EditUserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         exclude = ("user",)
+
+class ChangePasswordForm(forms.Form):
+    password = forms.CharField(
+        max_length=50, required=True, 
+        label="Password", 
+        widget=forms.TextInput(attrs={'class': 'form-control', 'autocomplate':'change password'})
+        )
+    
+    confirm_password = forms.CharField(
+        max_length=50, required=True,
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplate': 'confirm password'})
+        )
+
+    
