@@ -37,3 +37,9 @@
   color: var(--brand);
   margin-bottom: 1rem;
 }
+
+@media (max-width: 600px) {
+  .gallery-title {
+    font-size: 1rem; 
+  }
+}
