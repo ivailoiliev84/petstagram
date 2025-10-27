@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth import get_user_model, authenticate
 from accounts.models import UserProfile
 
@@ -63,16 +63,18 @@ class EditUserProfileForm(forms.ModelForm):
         model = UserProfile
         exclude = ("user",)
 
-class ChangePasswordForm(forms.Form):
-    password = forms.CharField(
-        max_length=50, required=True, 
-        label="Password", 
-        widget=forms.TextInput(attrs={'class': 'form-control', 'autocomplate':'change password'})
-        )
-    
-    confirm_password = forms.CharField(
-        max_length=50, required=True,
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'autocomplate': 'confirm password'})
-        )
+class CustomPasswordChangeForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="Current Password",
+        widget=forms.PasswordInput(attrs={"class": "form-control"})
+    )
+    new_password1 = forms.CharField(
+        label="New Password",
+        widget=forms.PasswordInput(attrs={"class": "form-control"})
+    )
+    new_password2 = forms.CharField(
+        label="Confirm New Password",
+        widget=forms.PasswordInput(attrs={"class": "form-control"})
+    )
 
     

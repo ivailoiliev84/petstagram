@@ -3,7 +3,9 @@ from django.views import View
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.forms import UserCreationForm, UserLoginForm, EditUserProfileForm, ChangePasswordForm
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+from accounts.forms import UserCreationForm, UserLoginForm, EditUserProfileForm, CustomPasswordChangeForm
 from accounts.models import UserProfile
 from django.contrib.auth import get_user_model
 # Create your views here.
@@ -53,10 +55,8 @@ class UserProfileDetailsView(LoginRequiredMixin, View):
     profile_details_template = "accounts/profile.html"
     
     def get(self, request, pk):
-        print(pk)
         profile = UserProfile.objects.get(user_id=pk)
         context = {'profile': profile}
-        print(profile)
         return render(request, self.profile_details_template, context)
      
 
@@ -79,14 +79,13 @@ class UserProfileEditView(LoginRequiredMixin, View):
             return redirect('profile', pk=pk)
         return redirect(request, self.profile_details_template, {'profile': profile})
 
-class ChangePasswordView(LoginRequiredMixin, View):
+class ChangePasswordView(PasswordChangeView):
     
-    change_password_template = 'accounts/change_password.html'
+    form_class = CustomPasswordChangeForm
+    template_name = "accounts/change_password.html"
 
-    def get(self, request, pk):
-        form = ChangePasswordForm()
-        return render(request, self.change_password_template, {'form': form})
+    def get_success_url(self):
+     
+        return reverse_lazy("profile", kwargs={"pk": self.request.user.id})
+
     
-    def post(self, request, pk):
-        user = AppUser.objects.get(pk=pk)
-        print(user)

@@ -19,11 +19,10 @@
             <a href="{% url 'profile_edit' request.user.id %}" class="btn btn-primary">
                 Edit Profile
             </a>
-             <a href="{% url 'change_password' request.user.id%}" class="btn btn-primary">
+             <a href="{% url 'change_password'%}" class="btn btn-primary">
                 Change Password
             </a>
         </div>
-        
     </div>
     <div class="profile-latest-posts">
         {% if not last_posts %}
