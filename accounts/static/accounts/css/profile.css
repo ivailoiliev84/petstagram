@@ -123,7 +123,9 @@
   }
 
 }
-
+ .back-ancor-container {
+    padding: 0.5rem;
+ }
 
 /* Responsive tweak */
 @media (max-width: 37.5rem) {

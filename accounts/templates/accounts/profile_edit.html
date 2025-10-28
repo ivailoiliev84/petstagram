@@ -5,12 +5,17 @@
     <div class="col-md-6">
       <div class="card shadow p-4 rounded-4">
         <h3 class="text-center mb-4">🐾 Edit Profile 🐾</h3>
-        <form method="POST" action="{% url 'profile_edit' request.user.id %}", enctype="multipart/form-data">
+        <form method="POST" action="{% url 'profile_edit' request.user.id %}" , enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form.as_p }}  <!-- or use crispy form rendering -->
-        <button type="submit" class="btn btn-primary w-100 mt-3">
+          {{ form.as_p }} <!-- or use crispy form rendering -->
+          <button type="submit" class="btn btn-primary w-100 mt-3">
             Edit
           </button>
+          <div class="back-ancor-container">
+              <a href="{% url 'profile' request.user.id%}" class="back-ancor">
+                Back
+              </a>
+          </div>
         </form>
       </div>
     </div>
