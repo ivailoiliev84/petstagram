@@ -28,7 +28,8 @@ body {
   min-height: calc(100svh - var(--header-h) - var(--footer-h));
   max-width: 1270px;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 0 rem;
+  padding-bottom: var(--footer-h);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -63,12 +63,12 @@ class UserProfileDetailsView(LoginRequiredMixin, View):
 class UserProfileEditView(LoginRequiredMixin, View):
 
     
-    profile_edit_template = 'accounts/profile_edit.html'
+    profile_details_template = 'accounts/profile_edit.html'
 
     def get(self, request, pk):
         profile = UserProfile.objects.get(user_id=pk)
         form = EditUserProfileForm(instance=profile)
-        return render(request, self.profile_edit_template, {'form': form})
+        return render(request, self.profile_details_template, {'form': form})
     
     def post(self, request, pk):
         profile = UserProfile.objects.get(user_id=pk)
@@ -87,5 +87,4 @@ class ChangePasswordView(PasswordChangeView):
     def get_success_url(self):
      
         return reverse_lazy("profile", kwargs={"pk": self.request.user.id})
-
     

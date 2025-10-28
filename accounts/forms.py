@@ -61,7 +61,24 @@ class EditUserProfileForm(forms.ModelForm):
 
     class Meta:
         model = UserProfile
-        exclude = ("user",)
+        exclude = ("user",) 
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name, field in self.fields.items():
+            print(field_name)
+            print(field)
+            field.widget.attrs['class'] = 'form-control'    
+
+
+        # Force 'description' to use Textarea with 3 rows
+        self.fields['description'].widget = forms.Textarea(
+            attrs={
+                'class': self.fields['description'].widget.attrs.get('class', 'form-control'),
+                'rows': 3,  # 👈 override 10
+                'cols': 40,  # optional
+            }
+        )
 
 class CustomPasswordChangeForm(PasswordChangeForm):
     old_password = forms.CharField(
@@ -76,5 +93,3 @@ class CustomPasswordChangeForm(PasswordChangeForm):
         label="Confirm New Password",
         widget=forms.PasswordInput(attrs={"class": "form-control"})
     )
-
-    
