@@ -27,12 +27,21 @@
     <div class="profile-latest-posts">
         {% if not last_posts %}
         <h1>You don't have any posts yet</h1>
-        {% else %}
-            <h1>You latest posts</h1>
-        {% endif %}
-        <div class="no-posts-container">
-            <img src="{% static 'accounts/images/no_posts.jpg' %}" alt="">
+        <dif class="latest-post-container" >   
+            <div class="latest-post-container-item">
+            <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
+            </div>
+            {% else %}
+                <h1>You latest posts</h1>
+            {% endif %}
         </div>
+        
     </div>
 
 </section>

@@ -42,6 +42,12 @@
   flex-direction: column;
   gap: 0.5rem;
   justify-content: center;
+  font-weight: bold;
+}
+
+.profile-latest-posts h1 {
+  font-size: 2rem;
+   text-align: center;
 }
 
 .profile-edit-btn-container {
@@ -50,52 +56,93 @@
   text-align: center;
 }
 
+.latest-post-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap; /* allows wrapping on smaller screens */
+
+}
+
+/* Each item = 3 in a row */
+.latest-post-container-item {
+  flex: 1 1 calc(33.333% - 1rem); /* 3 per row with gap accounted for */
+  aspect-ratio: 1 / 1;            /* keeps square shape */
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: #f3f3f3;
+  max-width: 200px;               /* optional cap */
+}
+
+.latest-post-container img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Tablet */
+@media (max-width: 992px) {
+  .profile-latest-posts h1 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .profile-image {
+    width: 80%;
+    margin: auto;
+
+  }
+  #profile-section {
+  flex-direction: column;
+  }
+  .main-div-profile-info, .profile-latest-posts {
+    width: 100%;
+  }
+  .profile-edit-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1rem;
+  }
+
+}
+
 
 /* Responsive tweak */
 @media (max-width: 37.5rem) { /* 600px */
   .profile-image {
-    flex: 0 0 6.25rem; /* 100px → 6.25rem */
-    height: 6.25rem;
+    width: 80%;
+    flex: 0 0 9.25rem; /* 100px → 6.25rem */
+    height: 9.25rem;
   }
   .profile-info p {
     font-size: 0.9rem;
+    
   }
   .profile-edit-btn-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     gap: 1rem;
   }
   .profile-edit-btn-container button {
     font-size: 0.8rem;
     padding: 0.4rem 0.8rem;
   }
+  .profile-edit-btn-container a {
+    font-size: 0.8rem;
+  }
   .profile-latest-posts h1 {
     font-size: 1.2rem;
   }
-  
-}
-
-.profile-latest-posts {
-    width: 50%;
+  .profile-latest-posts {
+    width: 100%;
     text-align: center;
 
 }   
-
-.profile-latest-posts h1 {
-  font-size: 2rem;
-}
-
-/* Tablet */
-@media (max-width: 992px) {
-  .profile-latest-posts h1 {
-    font-size: 1.5rem;
-  }
 }
 
 
-.no-posts-container img {
-    max-width: 100%;
-    height: 100%;
-    object-fit: cover;
-    background-color: #ccc;
-}
+
