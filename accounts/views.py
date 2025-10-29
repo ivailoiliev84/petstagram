@@ -62,7 +62,6 @@ class UserProfileDetailsView(LoginRequiredMixin, View):
 
 class UserProfileEditView(LoginRequiredMixin, View):
 
-    
     profile_details_template = 'accounts/profile_edit.html'
 
     def get(self, request, pk):
@@ -79,7 +78,7 @@ class UserProfileEditView(LoginRequiredMixin, View):
             return redirect('profile', pk=pk)
         return redirect(request, self.profile_details_template, {'profile': profile})
 
-class ChangePasswordView(PasswordChangeView):
+class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     
     form_class = CustomPasswordChangeForm
     template_name = "accounts/change_password.html"

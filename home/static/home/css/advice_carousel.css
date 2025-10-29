@@ -26,7 +26,6 @@
   overflow: hidden;
   white-space: nowrap;
   width: 80%;
-  background: #f8f9fa;
   margin: 0.625rem 0;
   padding: 0.5rem 0;
 }
@@ -41,6 +40,11 @@
   letter-spacing: 0.5px;  
 }
 
+
+.text-carousel .scroll-content span {
+  color: #f97316; /* Tailwind blue-600 */
+}
+
 @keyframes scroll-left {
   0% {
     transform: translateX(0);
@@ -49,9 +53,6 @@
     transform: translateX(-100%);
   }
 }
-
-
-
 
 @media (max-width: 600px) {
     .advice-link {

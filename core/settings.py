@@ -38,19 +38,28 @@ CSRF_TRUSTED_ORIGINS = ["http://192.168.0.12:8000"]  # Django 4+
 
 # Application definition
 
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+PROJECTS_APPS = [
     'accounts',
     'home',
+    'gallery',
+]
+
+THIRD_PART_APPS = [
     'cloudinary',
     'cloudinary_storage',
-
 ]
+
+INSTALLED_APPS = DJANGO_APPS + PROJECTS_APPS + THIRD_PART_APPS
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
