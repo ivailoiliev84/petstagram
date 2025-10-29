@@ -40,9 +40,27 @@
   letter-spacing: 0.5px;  
 }
 
+.label-important {
+  border-radius: 1rem;
+  background-color: red;
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
+.label-advice {
+  border-radius: 1rem;
+  background-color: rgb(243, 190, 92);
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
+.label-useful {
+  border-radius: 1rem;
+  background-color: greenyellow;
+  padding: 0.5rem;
+  margin-left: 1rem;
+}
 
 .text-carousel .scroll-content span {
-  color: #f97316; /* Tailwind blue-600 */
+  color: black; /* Tailwind blue-600 */
 }
 
 @keyframes scroll-left {
