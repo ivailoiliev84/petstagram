@@ -1,6 +1,7 @@
 #advice-carousel {
     width: 100%;
-    padding: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .advice-main-container{
@@ -47,4 +48,19 @@
   100% {
     transform: translateX(-100%);
   }
+}
+
+
+
+
+@media (max-width: 600px) {
+    .advice-link {
+        font-size: 1rem;
+    }
+    .scroll-content {
+        font-size: 1rem;
+    }
+    #main-section {
+        gap: 0;
+    }
 }
