@@ -9,8 +9,7 @@
                 <img src="{{ post.image.url }}" alt="">
             </div>
             <div class="post-title">
-                <h1>{{ post.title }}</h1>
-
+                <p>{{ post.title }}</p>
             </div>
             <div class="reatings-container">
                 <div class="post-like">
@@ -31,6 +30,15 @@
                     </div>
                 </div>
 
+                <div class="post-comment">
+                    <div class="comment">
+                        <a href="{% url 'post_details' post.id %}"><i class="fa-regular fa-comment"></i></a>
+                    </div>
+                    <div class="post-like-count">
+                        <span>4</span>
+                    </div>
+                </div>
+
                 <div class="post-rating">
                     <div class="rating">
                         <i class="fa-solid fa-star"></i>
@@ -40,16 +48,8 @@
                         <i class="fa-regular fa-star"></i>
                     </div>
                 </div>
-
-            </div>
-            <div class="post-description-container">
-                <p>{{ post.description }}</p>
-            </div>
-            <div class="post-details-link">
-                <a href="{% url 'post_details' post.id %}">details</a>
             </div>
         </div>
         {% endfor %}
     </div>
-
 </section>

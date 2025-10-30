@@ -2,54 +2,77 @@
 {% load static %}
 {% block content %}
 
-<section id="posts-section">
-    <div class="main-posts-container">
+<section id="posts-comment-section">
 
-        <div class="main-post-container">
-            <div class="post-image-container">
-                <img src="{{ post.image.url }}" alt="">
-            </div>
-            <div class="post-title">
-                <h1>{{ post.title }}</h1>
+    <div class="main-post-comment-container">
+        <div class="post-comment-image-container">
+            <img src="{{ post.image.url }}" alt="">
+        </div>
+        <div class="post-comment-title">
+            <h1>{{ post.title }}</h1>
 
-            </div>
-            <div class="reatings-container">
-                <div class="post-like">
-                    <div class="like">
-                        <a href=""><i class="fa-sharp fa-solid fa-thumbs-up"></i></a>
-                    </div>
-                    <div class="post-like-count">
-                        <span>4</span>
-                    </div>
+        </div>
+        <div class="reatings-comment-container">
+            <div class="post-comment-like">
+                <div class="like">
+                    <a href=""><i class="fa-sharp fa-solid fa-thumbs-up"></i></a>
                 </div>
-
-                <div class="post-dislike">
-                    <div class="dislike">
-                        <a href=""><i class="fa-solid fa-thumbs-down"></i></a>
-                    </div>
-                    <div class="post-dislike-count">
-                        <span>1</span>
-                    </div>
+                <div class="post-comment-like-count">
+                    <span>4</span>
                 </div>
+            </div>
 
-                <div class="post-rating">
-                    <div class="rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
+            <div class="post-comment-dislike">
+                <div class="dislike">
+                    <a href=""><i class="fa-solid fa-thumbs-down"></i></a>
                 </div>
+                <div class="post-comment-dislike-count">
+                    <span>1</span>
+                </div>
+            </div>
 
+            <div class="post-comment">
+                <div class="comment">
+                    <a href="{% url 'post_details' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                </div>
+                <div class="post-like-count">
+                    <span>4</span>
+                </div>
             </div>
-            <div class="post-description-container">
-                <p>{{ post.description }}</p>
+
+            <div class="post-comment-rating">
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
             </div>
-            <div class="post-edit-link">
+            <div class="post-comment-edit-link">
+                <a href="{% url 'gallery' %}">gallery</a>
+            </div>
+            <div class="post-comment-edit-link">
                 <a href="{% url 'edit_post' post.id %}">edit</a>
             </div>
         </div>
+        <div class="post-comment-description-container">
+            <p>{{ post.description }}</p>
+        </div>
+        <div class="main-post-comment-container">
+            <form method="POST" action="{% url 'post_details' post.id %}">
+                {% csrf_token %}
+                {{ form.text }}  <!-- single-line input -->
+                <button type="submit">Post</button>
+            </form>
+        </div>
+        <div class="comeents-list">
+            {% for comment in comments %}
+                <p>{{ comment.text }}</p>
+
+            {% endfor %}
+        </div>
     </div>
+
 </section>
 {% endblock %}

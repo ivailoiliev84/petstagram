@@ -1,5 +1,5 @@
 from django import forms
-from gallery.models import Post
+from gallery.models import Post, PostComment
 
 
 class CreatePostForm(forms.ModelForm):
@@ -18,3 +18,15 @@ class CreatePostForm(forms.ModelForm):
                 "class": "form-control",  # 👈 Bootstrap style
                 "placeholder": field.label,
             })
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = PostComment
+        fields = ['text']
+        widgets = {
+            'text': forms.TextInput(attrs={  # single-line input; use Textarea if you prefer
+                'placeholder': 'Write a comment...',
+                'class': 'form-control',
+            })
+        }

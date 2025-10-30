@@ -1,23 +1,14 @@
-#posts-section {
+#posts-comment-section {
     display: flex;
     flex-direction: column;
     max-width: 100%;
+    width: 50rem;
     padding: 1rem;
     gap: 1rem;
 }
 
-.main-posts-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-}
-
-
-.main-post-container {
-  flex: 0 1 25rem;   /* ~300px wide card */
-  height: 27.5rem;     /* equal height */
+.main-post-comment-container {
+  width: 100%;
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -26,30 +17,30 @@
   box-shadow: 0 4px 10px rgba(0,0,0,.08);
 }
 
-.post-image-container {
+.post-comment-image-container {
   width: 100%;
-  height: 18rem;      /* set the image area you want */
+  /* height: 18rem;   */
   overflow: hidden;
 }
 
-.post-image-container img {
+.post-comment-image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* fills and crops */
+  object-fit: cover;
   display: block;
 }
 
-.post-title {
+.post-comment-title {
   text-align: center;
 }
 
-.reatings-container{
+.reatings-comment-container{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 }
 
-.post-like {
+.post-comment-like {
   display: flex;
   flex-direction: row;
   padding: 0.5rem;
@@ -58,21 +49,17 @@
 }
 
 
-.post-dislike {
+.post-comment-dislike {
   display: flex;
   flex-direction: row;
   padding: 0.5rem;
   justify-content: center;
   align-items: center;
 }
-.post-rating {
+.post-comment-rating {
   padding: 0.5rem;
 }
 
-.post-description-container {
+.post-comment-description-container {
   text-align: center;
-}
-.post-details-link {
-
-  padding: 1rem;
 }

@@ -14,10 +14,9 @@
     gap: 1.5rem;
 }
 
-
 .main-post-container {
-  flex: 0 1 25rem;   /* ~300px wide card */
-  height: 27.5rem;     /* equal height */
+  flex: 0 1 22rem;   /* ~300px wide card */
+  height: 25.5rem;     /* equal height */
   display: flex;
   flex-direction: column;
   background: #fff;
@@ -41,7 +40,13 @@
 
 .post-title {
   text-align: center;
+  font-weight: bold;
 }
+.post-title p {
+  margin: 0;
+  padding: 0.5rem;
+}
+
 
 .reatings-container{
   display: flex;
@@ -57,7 +62,6 @@
   align-items: center;
 }
 
-
 .post-dislike {
   display: flex;
   flex-direction: row;
@@ -65,14 +69,37 @@
   justify-content: center;
   align-items: center;
 }
+
+.post-comment {
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+
 .post-rating {
   padding: 0.5rem;
 }
 
-.post-description-container {
-  text-align: center;
-}
 .post-details-link {
-
   padding: 1rem;
+}
+
+.post-like-count {
+  padding: 0.5rem;
+}
+
+.post-dislike-count {
+  padding: 0.5rem;
+}
+
+.reatings-container {
+  height: 1rem;
+}
+.post-rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

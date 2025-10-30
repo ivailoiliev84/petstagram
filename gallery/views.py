@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from gallery.forms import CreatePostForm
-from gallery.models import Post
+from gallery.forms import CreatePostForm, CommentForm
+from gallery.models import Post, PostComment
 # Create your views here.
 
 class Gallery(LoginRequiredMixin, View):
@@ -34,15 +34,26 @@ class CreatePost(LoginRequiredMixin, View):
         return render(request, self.create_post_template, context)
 
 
-
 class PostDetails(LoginRequiredMixin, View):
     post_details_template = 'gallery/post_details.html'
 
     def get(self, request, pk):
-        post = Post.objects.get(pk=pk)
-        return render(request, self.post_details_template, {'post': post})
+        post = get_object_or_404(Post, pk=pk)
+        form = CommentForm()
+        comments = post.comments.select_related('user').order_by('-created_at')
+        return render(request, self.post_details_template, {'form':form, 'post': post, 'comments': comments})
 
-
+    def post(self, request, pk):
+        post = get_object_or_404(Post, pk=pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.post = post
+            comment.save()
+            return redirect('post_details', pk=post.id)
+        comments = post.comments.select_related('user').order_by('-created_at')
+        return render(request, self.post_details_template, {'form':form, 'post': post, 'comments': comments})
 
 class EditPost(LoginRequiredMixin, View):
     edit_post_template = 'gallery/edit_post.html'
@@ -54,8 +65,9 @@ class EditPost(LoginRequiredMixin, View):
     
     def post(self, request, pk):
         post = get_object_or_404(Post, pk=pk)
-        form = CreatePostForm(request.POST, request.FILES, instance=post)  # ✅ important
+        form = CreatePostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect('post_details', pk=post.pk)
         return render(request, self.edit_post_template, {'form': form, 'post': post})
+    
