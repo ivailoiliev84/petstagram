@@ -5,11 +5,11 @@
 <section id="gallery-section" class="gallery-hero">
   <div class="gallery-image">
     <img src="{% static 'gallery/images/gallery_main_img.jpeg' %}" alt="Gallery main image">
-    <div class="gallery-overlay">
+  </div>
+  <div class="gallery-title-container">
       <h1 class="gallery-title">Welcome to Our Gallery</h1>
     </div>
-  </div>
 </section>
-{% include "gallery/posts.html" %}
+{% include "gallery/posts_list.html" %}
 
 {% endblock %}

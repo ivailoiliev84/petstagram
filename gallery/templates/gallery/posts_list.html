@@ -1,0 +1,31 @@
+{% load static %}
+
+<section id="posts-section">
+    <div class="main-posts-container">
+        {% for post in posts %}
+
+        <div class="main-post-container">
+            <div class="post-image-container">
+                <img src="{{ post.image.url }}" alt="">
+            </div>
+            <div class="post-title">
+                <h1>{{ post.title }}</h1>
+
+            </div>
+            <div class="post-rating">
+                <div class="rating">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-regular fa-star"></i>
+                </div>
+            </div>
+            <div class="post-description-container">
+                <p>{{ post.description }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>

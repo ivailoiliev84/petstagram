@@ -1,0 +1,38 @@
+#posts-section {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.main-posts-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+
+.main-post-container {
+  flex: 0 1 37.5rem;   /* ~300px wide card */
+  height: 27.5rem;     /* equal height */
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 0.8rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.post-image-container {
+  width: 100%;
+  height: 18rem;      /* set the image area you want */
+  overflow: hidden;
+}
+
+.post-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;  /* fills and crops */
+  display: block;
+}
