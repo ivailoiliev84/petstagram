@@ -12,17 +12,41 @@
                 <h1>{{ post.title }}</h1>
 
             </div>
-            <div class="post-rating">
-                <div class="rating">
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-solid fa-star"></i>
-                    <i class="fa-regular fa-star"></i>
+            <div class="reatings-container">
+                <div class="post-like">
+                    <div class="like">
+                        <a href=""><i class="fa-sharp fa-solid fa-thumbs-up"></i></a>
+                    </div>
+                    <div class="post-like-count">
+                        <span>4</span>
+                    </div>
                 </div>
+
+                <div class="post-dislike">
+                    <div class="dislike">
+                        <a href=""><i class="fa-solid fa-thumbs-down"></i></a>
+                    </div>
+                    <div class="post-dislike-count">
+                        <span>1</span>
+                    </div>
+                </div>
+
+                <div class="post-rating">
+                    <div class="rating">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-regular fa-star"></i>
+                    </div>
+                </div>
+
             </div>
             <div class="post-description-container">
                 <p>{{ post.description }}</p>
+            </div>
+            <div class="post-details-link">
+                <a href="">details</a>
             </div>
         </div>
         {% endfor %}

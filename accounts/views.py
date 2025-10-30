@@ -86,4 +86,4 @@ class ChangePasswordView(LoginRequiredMixin, PasswordChangeView):
     def get_success_url(self):
      
         return reverse_lazy("profile", kwargs={"pk": self.request.user.id})
-    
+   
