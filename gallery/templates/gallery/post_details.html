@@ -1,8 +1,9 @@
+{% extends 'base.html' %}
 {% load static %}
+{% block content %}
 
 <section id="posts-section">
     <div class="main-posts-container">
-        {% for post in posts %}
 
         <div class="main-post-container">
             <div class="post-image-container">
@@ -45,11 +46,10 @@
             <div class="post-description-container">
                 <p>{{ post.description }}</p>
             </div>
-            <div class="post-details-link">
-                <a href="{% url 'post_details' post.id %}">details</a>
+            <div class="post-edit-link">
+                <a href="{% url 'edit_post' post.id %}">edit</a>
             </div>
         </div>
-        {% endfor %}
     </div>
-
 </section>
+{% endblock %}

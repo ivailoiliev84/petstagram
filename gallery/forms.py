@@ -2,8 +2,6 @@ from django import forms
 from gallery.models import Post
 
 
-
-
 class CreatePostForm(forms.ModelForm):
 
     class Meta:
