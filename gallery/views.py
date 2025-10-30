@@ -6,6 +6,8 @@ from gallery.forms import CreatePostForm, CommentForm
 from gallery.models import Post, PostComment
 # Create your views here.
 
+
+
 class Gallery(LoginRequiredMixin, View):
     
     gallery_template = "gallery/gallery_main.html"
@@ -38,10 +40,12 @@ class PostDetails(LoginRequiredMixin, View):
     post_details_template = 'gallery/post_details.html'
 
     def get(self, request, pk):
+        user = request.user
         post = get_object_or_404(Post, pk=pk)
         form = CommentForm()
         comments = post.comments.select_related('user').order_by('-created_at')
-        return render(request, self.post_details_template, {'form':form, 'post': post, 'comments': comments})
+        context = {'form':form, 'post': post, 'comments': comments}
+        return render(request, self.post_details_template, context)
 
     def post(self, request, pk):
         post = get_object_or_404(Post, pk=pk)

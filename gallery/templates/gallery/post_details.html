@@ -59,19 +59,28 @@
         <div class="post-comment-description-container">
             <p>{{ post.description }}</p>
         </div>
-        <div class="main-post-comment-container">
-            <form method="POST" action="{% url 'post_details' post.id %}">
-                {% csrf_token %}
-                {{ form.text }}  <!-- single-line input -->
-                <button type="submit">Post</button>
-            </form>
-        </div>
+
         <div class="comeents-list">
             {% for comment in comments %}
-                <p>{{ comment.text }}</p>
-
+            <div class="comment-container">
+                <div class="comment-image">
+                    <img src="" alt="">
+                </div>
+                <div class="comment-tetx">
+                    <p>{{ comment.text }}</p>
+                </div>
+            </div>
+            
             {% endfor %}
+
         </div>
+
+        <form method="POST" action="{% url 'post_details' post.id %}">
+            {% csrf_token %}
+            {{ form.text }} <!-- single-line input -->
+            <button class="comment-button" type="submit">Submit</button>
+        </form>
+
     </div>
 
 </section>
