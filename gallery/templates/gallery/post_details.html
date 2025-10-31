@@ -64,7 +64,11 @@
             {% for comment in comments %}
             <div class="comment-container">
                 <div class="comment-image">
-                    <img src="" alt="">
+                    {% if profile.profile_imege %}
+                        <img src="{{ profile.profile_imege.url }}" alt="">
+                    {% else %}
+                        <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="">
+                    {% endif %}
                 </div>
                 <div class="comment-tetx">
                     <p>{{ comment.text }}</p>
