@@ -2,7 +2,6 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
-from accounts.models import UserProfile
 from gallery.forms import CreatePostForm, CommentForm
 from gallery.models import Post, PostComment
 # Create your views here.
@@ -41,15 +40,15 @@ class PostDetails(LoginRequiredMixin, View):
     post_details_template = 'gallery/post_details.html'
 
     def get(self, request, pk):
-        profile = get_object_or_404(UserProfile, user=request.user)
         post = get_object_or_404(Post, pk=pk)
         form = CommentForm()
-        comments = post.comments.select_related('user').order_by('-created_at')
+
+        comments = post.comments.select_related('user', 'user__userprofile').order_by('-created_at')
         context = {'form':form, 
                    'post': post, 
                    'comments': comments,
-                   'profile': profile
                    }
+        
         return render(request, self.post_details_template, context)
 
     def post(self, request, pk):
@@ -80,3 +79,12 @@ class EditPost(LoginRequiredMixin, View):
             return redirect('post_details', pk=post.pk)
         return render(request, self.edit_post_template, {'form': form, 'post': post})
     
+
+class DeleteComment(LoginRequiredMixin, View):
+
+    def get(self, request, pk):
+        post = get_object_or_404(Post, pk=request.user.id)
+        comment = get_object_or_404(PostComment, pk=pk)
+        comment.delete()
+        return redirect('post_details', pk=post.id)
+        

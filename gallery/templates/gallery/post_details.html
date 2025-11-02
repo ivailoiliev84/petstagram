@@ -10,7 +10,6 @@
         </div>
         <div class="post-comment-title">
             <h1>{{ post.title }}</h1>
-
         </div>
         <div class="reatings-comment-container">
             <div class="post-comment-like">
@@ -49,12 +48,14 @@
                     <i class="fa-regular fa-star"></i>
                 </div>
             </div>
-            <div class="post-comment-edit-link">
+            <div class="post-comment-gallery-link">
                 <a href="{% url 'gallery' %}">gallery</a>
             </div>
+            {% if request.user == post.user %}
             <div class="post-comment-edit-link">
                 <a href="{% url 'edit_post' post.id %}">edit</a>
             </div>
+            {% endif %}
         </div>
         <div class="post-comment-description-container">
             <p>{{ post.description }}</p>
@@ -64,19 +65,28 @@
             {% for comment in comments %}
             <div class="comment-container">
                 <div class="comment-image">
-                    {% if profile.profile_imege %}
-                        <img src="{{ profile.profile_imege.url }}" alt="">
+                    {% if comment.user.userprofile.profile_picture %}
+                        <img src="{{ comment.user.userprofile.profile_picture.url }}" alt="">
                     {% else %}
                         <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="">
                     {% endif %}
                 </div>
-                <div class="comment-tetx">
+                <div class="comment-owner">
+                    {{ comment.user }}
+                </div>
+                <div class="comment-edit">
+                    
+                </div>
+                {% if comment.user == request.user %}
+                <div class="comment-delete">
+                   <a href="{% url 'delete_comment' comment.id %}"><i class="fa-solid fa-trash"></i></a>
+                </div>
+                {% endif %}
+            </div>
+            <div class="comment-tetx">
                     <p>{{ comment.text }}</p>
                 </div>
-            </div>
-            
             {% endfor %}
-
         </div>
 
         <form method="POST" action="{% url 'post_details' post.id %}">
@@ -84,7 +94,6 @@
             {{ form.text }} <!-- single-line input -->
             <button class="comment-button" type="submit">Submit</button>
         </form>
-
     </div>
 
 </section>
