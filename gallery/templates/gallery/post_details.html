@@ -1,12 +1,9 @@
-{% extends 'base.html' %}
-{% load static %}
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <section id="posts-comment-section">
-
     <div class="main-post-comment-container">
         <div class="post-comment-image-container">
-            <img src="{{ post.image.url }}" alt="">
+            <img src="{{ post.image.url }}" alt="" />
         </div>
         <div class="post-comment-title">
             <h1>{{ post.title }}</h1>
@@ -14,7 +11,9 @@
         <div class="reatings-comment-container">
             <div class="post-comment-like">
                 <div class="like">
-                    <a href=""><i class="fa-sharp fa-solid fa-thumbs-up"></i></a>
+                    <a href=""
+                        ><i class="fa-sharp fa-solid fa-thumbs-up"></i
+                    ></a>
                 </div>
                 <div class="post-comment-like-count">
                     <span>4</span>
@@ -32,7 +31,9 @@
 
             <div class="post-comment">
                 <div class="comment">
-                    <a href="{% url 'post_details' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="{% url 'post_details' post.id %}"
+                        ><i class="fa-solid fa-pen-to-square"></i
+                    ></a>
                 </div>
                 <div class="post-like-count">
                     <span>4</span>
@@ -49,19 +50,24 @@
                 </div>
             </div>
             <div class="post-comment-gallery-link">
-                <a href="{% url 'gallery' %}"><i class="fa-solid fa-image"></i></a>
+                <a href="{% url 'gallery' %}"
+                    ><i class="fa-solid fa-image"></i
+                ></a>
             </div>
             {% if request.user == post.user %}
             <div class="post-comment-edit-link">
-                <a href="{% url 'edit_post' post.id %}"><i class="fa-solid fa-file-pen"></i></a>
+                <a href="{% url 'edit_post' post.id %}"
+                    ><i class="fa-solid fa-file-pen"></i
+                ></a>
             </div>
-            <div class="post-comment-edit-link">
-                <a href="{% url 'edit_post' post.id %}"><i class="fa-solid fa-trash"></i></a>
+            <div class="post-comment-delete-link">
+                <a href="{% url 'delete_post' post.id %}"
+                    ><i class="fa-solid fa-trash"></i
+                ></a>
             </div>
             {% endif %}
         </div>
         <div class="post-comment-description-container">
-            
             <p>{{ post.description }}</p>
         </div>
 
@@ -70,35 +76,38 @@
             <div class="comment-container">
                 <div class="comment-image">
                     {% if comment.user.userprofile.profile_picture %}
-                        <img src="{{ comment.user.userprofile.profile_picture.url }}" alt="">
+                    <img
+                        src="{{ comment.user.userprofile.profile_picture.url }}"
+                        alt=""
+                    />
                     {% else %}
-                        <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="">
+                    <img
+                        src="{% static 'accounts/images/empty_profile_img.jpg' %}"
+                        alt=""
+                    />
                     {% endif %}
                 </div>
-                <div class="comment-owner">
-                    {{ comment.user }}
-                </div>
-                <div class="comment-edit">
-                    
-                </div>
+                <div class="comment-owner">{{ comment.user }}</div>
+                <div class="comment-edit"></div>
                 {% if comment.user == request.user %}
                 <div class="comment-delete">
-                   <a href="{% url 'delete_comment' comment.id %}"><i class="fa-solid fa-trash"></i></a>
+                    <a href="{% url 'delete_comment' comment.id %}"
+                        ><i class="fa-solid fa-trash"></i
+                    ></a>
                 </div>
                 {% endif %}
             </div>
             <div class="comment-tetx">
-                    <p>{{ comment.text }}</p>
-                </div>
+                <p>{{ comment.text }}</p>
+            </div>
             {% endfor %}
         </div>
 
         <form method="POST" action="{% url 'post_details' post.id %}">
-            {% csrf_token %}
-            {{ form.text }} <!-- single-line input -->
+            {% csrf_token %} {{ form.text }}
+            <!-- single-line input -->
             <button class="comment-button" type="submit">Submit</button>
         </form>
     </div>
-
 </section>
 {% endblock %}

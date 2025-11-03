@@ -73,15 +73,22 @@
 
 }
 
-
 .post-comment-edit-link{
   display: flex;
-  /* flex-direction: row;
-  padding: 0.5rem; */
+  flex-direction: row;
+  padding: 0.5rem;
   justify-content: center;
   align-items: center;
-
 }
+
+.post-comment-delete-link{
+  display: flex;
+  flex-direction: row;
+  padding: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
 .post-comment-description-container p{
   display: flex;
   justify-content: center;

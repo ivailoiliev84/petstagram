@@ -88,3 +88,12 @@ class DeleteComment(LoginRequiredMixin, View):
         comment.delete()
         return redirect('post_details', pk=post.pk)
         
+        
+        
+class DeletePost(LoginRequiredMixin, View):
+    
+    def get(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        post.delete()
+        return redirect('gallery')
+
