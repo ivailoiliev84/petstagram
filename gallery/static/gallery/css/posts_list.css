@@ -63,6 +63,46 @@
   align-items: center;
 }
 
+/* keep the form from becoming a big block hit-area */
+.like-form { display: inline; }
+
+/* reset the button so it behaves like an icon link */
+.icon-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: inherit;            /* inherit text color like <a> */
+}
+
+/* remove the square/outline */
+.icon-btn:focus,
+.icon-btn:focus-visible,
+.icon-btn:active {
+  outline: none;
+  box-shadow: none;
+  background: transparent;
+}
+
+/* anchor-like hover: only the icon changes color */
+.icon-btn i {
+  color: var(--accent);
+  transition: color .2s;     /* optional */
+}
+.icon-btn:hover i {
+  color: var(--accent-hover);            /* same blue you had on <a>:hover */
+}
+
+
+
 .post-dislike {
   display: flex;
   flex-direction: row;
