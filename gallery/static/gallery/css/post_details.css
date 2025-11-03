@@ -82,8 +82,11 @@
   align-items: center;
 
 }
-.post-comment-description-container {
-  text-align: center;
+.post-comment-description-container p{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.5rem;
 }
 
 .comeents-list {
@@ -122,4 +125,16 @@
 
 .comment-tetx {
   margin-left: 5rem;
+}
+
+/* mobile layout */
+@media (max-width: 600px) {
+  .reatings-comment-container {
+    flex-wrap: wrap;                 /* allow items to move to next line */
+    justify-content: space-between;  /* spread the small buttons */
+    gap: 0.5rem 1rem;                /* optional spacing */
+  }
+  .post-comment-description-container {
+    border-top: solid 0.1rem var(--border);
+  }
 }

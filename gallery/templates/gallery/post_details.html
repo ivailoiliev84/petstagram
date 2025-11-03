@@ -49,15 +49,19 @@
                 </div>
             </div>
             <div class="post-comment-gallery-link">
-                <a href="{% url 'gallery' %}">gallery</a>
+                <a href="{% url 'gallery' %}"><i class="fa-solid fa-image"></i></a>
             </div>
             {% if request.user == post.user %}
             <div class="post-comment-edit-link">
-                <a href="{% url 'edit_post' post.id %}">edit</a>
+                <a href="{% url 'edit_post' post.id %}"><i class="fa-solid fa-file-pen"></i></a>
+            </div>
+            <div class="post-comment-edit-link">
+                <a href="{% url 'edit_post' post.id %}"><i class="fa-solid fa-trash"></i></a>
             </div>
             {% endif %}
         </div>
         <div class="post-comment-description-container">
+            
             <p>{{ post.description }}</p>
         </div>
 

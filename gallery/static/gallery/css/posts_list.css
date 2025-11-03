@@ -15,7 +15,7 @@
 }
 
 .main-post-container {
-  flex: 0 1 22rem;   /* ~300px wide card */
+  flex: 0 1 20rem;   /* ~300px wide card */
   height: 25.5rem;     /* equal height */
   display: flex;
   flex-direction: column;
