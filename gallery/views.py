@@ -83,8 +83,8 @@ class EditPost(LoginRequiredMixin, View):
 class DeleteComment(LoginRequiredMixin, View):
 
     def get(self, request, pk):
-        post = get_object_or_404(Post, pk=request.user.id)
         comment = get_object_or_404(PostComment, pk=pk)
+        post = get_object_or_404(Post, pk=comment.post.pk)
         comment.delete()
-        return redirect('post_details', pk=post.id)
+        return redirect('post_details', pk=post.pk)
         
