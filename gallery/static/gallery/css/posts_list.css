@@ -144,3 +144,30 @@
   justify-content: center;
   align-items: center;
 }
+
+.publisher-main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  
+}
+
+.bublisher-img-container {
+    max-width: 3rem;
+    max-height: 3rem;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    display: block;
+}
+.bublisher-img-container img {
+  width: 100%;
+
+}
+
+.bublisher-container p{
+  margin: 0;
+}

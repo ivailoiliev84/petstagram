@@ -17,7 +17,7 @@ class Gallery(LoginRequiredMixin, View):
         # posts = Post.objects.all()
    
         posts= (
-            Post.objects.select_related('user')
+            Post.objects.select_related('user', 'user__userprofile')
             .annotate(
                comments_count = Count('comments', distinct=True),
                likes_count = Count('likes', distinct=True),
