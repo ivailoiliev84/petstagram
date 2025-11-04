@@ -11,21 +11,29 @@
         <div class="reatings-comment-container">
             <div class="post-comment-like">
                 <div class="like">
-                    <a href=""
-                        ><i class="fa-sharp fa-solid fa-thumbs-up"></i
-                    ></a>
+                    <form method="post" action="{% url 'post_like' post.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-btn" aria-label="Like">
+                            <i class="fa-sharp fa-solid fa-thumbs-up"></i>
+                        </button>
+                    </form>
                 </div>
                 <div class="post-comment-like-count">
-                    <span>4</span>
+                    <span>{{ post.likes_count}}</span>
                 </div>
             </div>
 
             <div class="post-comment-dislike">
                 <div class="dislike">
-                    <a href=""><i class="fa-solid fa-thumbs-down"></i></a>
+                    <form method="post" action="{% url 'post_dislike' post.id %}">
+                        {% csrf_token %}
+                        <button type="submit" class="icon-btn" aria-label="Like">
+                            <i class="fa-solid fa-thumbs-down"></i>
+                        </button>
+                    </form>
                 </div>
                 <div class="post-comment-dislike-count">
-                    <span>1</span>
+                    <span>{{ post.dislikes_count }}</span>
                 </div>
             </div>
 
@@ -36,7 +44,7 @@
                     ></a>
                 </div>
                 <div class="post-like-count">
-                    <span>4</span>
+                    <span>{{ post.comments_count}}</span>
                 </div>
             </div>
 
