@@ -52,15 +52,23 @@ class PostDetails(LoginRequiredMixin, View):
     post_details_template = 'gallery/post_details.html'
 
     def get(self, request, pk):
-        post = get_object_or_404(Post, pk=pk)
+        
         form = CommentForm()
+        qs = (
+            Post.objects.select_related('user')
+            .annotate(
+                likes_count=Count('likes', distinct=True),
+                dislikes_count=Count('dislikes', distinct=True),
+                comments_count=Count('comments', distinct=True)
+            )
+        )
 
+        post = get_object_or_404(qs, pk=pk)
         comments = post.comments.select_related('user', 'user__userprofile').order_by('-created_at')
-        likes_count = PostLike.objects.filter(post=post).count()
+    
         context = {'form':form, 
                    'post': post, 
                    'comments': comments,
-                   'likes_count': likes_count
                    }
         
         return render(request, self.post_details_template, context)
