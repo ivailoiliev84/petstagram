@@ -127,6 +127,13 @@
 .comment-container {
   display: flex;
   align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+.comment-edit {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
   gap: 1rem;
 }
 
@@ -144,4 +151,9 @@
   .post-comment-description-container {
     border-top: solid 0.1rem var(--border);
   }
+  .comment-owner {
+    width: 60%;
+    overflow: hidden;
+  }
+
 }

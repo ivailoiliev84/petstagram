@@ -39,7 +39,9 @@
 
             <div class="post-comment">
                 <div class="comment">
-                    <a href="{% url 'post_details' post.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    <a href="{% url 'post_details' post.id %}"
+                        ><i class="fa-solid fa-pen-to-square"></i
+                    ></a>
                 </div>
                 <div class="post-like-count">
                     <span>{{ post.comments_count}}</span>
@@ -56,14 +58,20 @@
                 </div>
             </div>
             <div class="post-comment-gallery-link">
-                <a href="{% url 'gallery' %}"><i class="fa-solid fa-image"></i></a>
+                <a href="{% url 'gallery' %}"
+                    ><i class="fa-solid fa-image"></i
+                ></a>
             </div>
             {% if request.user == post.user %}
             <div class="post-comment-edit-link">
-                <a href="{% url 'edit_post' post.id %}"><i class="fa-solid fa-file-pen"></i></a>
+                <a href="{% url 'edit_post' post.id %}"
+                    ><i class="fa-solid fa-file-pen"></i
+                ></a>
             </div>
             <div class="post-comment-delete-link">
-                <a href="{% url 'delete_post' post.id %}"><i class="fa-solid fa-trash"></i></a>
+                <a href="{% url 'delete_post' post.id %}"
+                    ><i class="fa-solid fa-trash"></i
+                ></a>
             </div>
             {% endif %}
         </div>
@@ -72,38 +80,48 @@
         </div>
 
         <div class="comeents-list">
-            {% for comment in comments %}
-            <div class="comment-container">
-                <div class="comment-image">
-                    {% if comment.user.userprofile.profile_picture %}
-                    <img src="{{ comment.user.userprofile.profile_picture.url }}" alt="" />
-                    {% else %}
-                    <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="" />
+                <div class="comment-container">
+                    <div class="comment-image">
+                        {% if comment.user.userprofile.profile_picture %}
+                        <img
+                            src="{{ comment.user.userprofile.profile_picture.url }}"
+                            alt=""
+                        />
+                        {% else %}
+                        <img
+                            src="{% static 'accounts/images/empty_profile_img.jpg' %}"
+                            alt=""
+                        />
+                        {% endif %}
+                    </div>
+                    <div class="comment-owner">{{ comment.user }}</div>
+                    
+                    {% if comment.user == request.user %}
+                        <div class="comment-edit">
+                            <a href="{% url 'edit_comment' comment.id %}"
+                                ><i class="fa-solid fa-file-pen"></i
+                            ></a>
+                        </div>
+                        <div class="comment-delete">
+                            <a href="{% url 'delete_comment' comment.id %}"
+                                ><i class="fa-solid fa-trash"></i
+                            ></a>
+                        </div>
+                    
                     {% endif %}
                 </div>
-                <div class="comment-owner">{{ comment.user }}</div>
-          
-                    {% if comment.user == request.user %}
-                    <div class="comment-edit">
-                        <a href="{% url 'edit_comment' comment.id %}"><i class="fa-solid fa-file-pen"></i></a>
-                    </div>
-                    <div class="comment-delete">
-                        <a href="{% url 'delete_comment' comment.id %}"><i class="fa-solid fa-trash"></i></a>
-                    </div>
-                    {% endif %}
-          
-            </div>
-            <div class="comment-tetx">
-                <p>{{ comment.text }}</p>
-            </div>
-            {% endfor %}
-        </div>
-
-        <form method="POST" action="{% url 'post_details' post.id %}">
-            {% csrf_token %} {{ form.text }}
+                <div class="comment-tetx">
+                    <p>{{ comment.text }}</p>
+                </div>
+                <form method="POST" action="{% url 'edit_comment' comment.id %}">
+            {% csrf_token %} 
+            {{ form.text }}
             <!-- single-line input -->
             <button class="comment-button" type="submit">Submit</button>
         </form>
+        </div>
+
+        
     </div>
 </section>
 {% endblock %}

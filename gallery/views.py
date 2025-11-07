@@ -8,13 +8,11 @@ from gallery.models import Post, PostComment, PostLike, PostDislike
 # Create your views here.
 
 
-
 class Gallery(LoginRequiredMixin, View):
     
     gallery_template = "gallery/gallery_main.html"
 
     def get(self, request):
-        # posts = Post.objects.all()
    
         posts= (
             Post.objects.select_related('user', 'user__userprofile')
@@ -102,8 +100,38 @@ class EditPost(LoginRequiredMixin, View):
         return render(request, self.edit_post_template, {'form': form, 'post': post})
     
 
-class DeleteComment(LoginRequiredMixin, View):
+class EditCommentView(LoginRequiredMixin, View):
+    
+    edit_comment_template = 'gallery/edit_comment.html'
+ 
+    def get(self, request, pk):
+        comment = PostComment.objects.get(pk=pk)
+        post = Post.objects.get(pk=comment.post.id)
+        form = CommentForm(instance=comment)
 
+    
+        context = {'form':form, 
+                   'post': post, 
+                   'comment': comment,
+                   }
+        
+        return render(request, self.edit_comment_template, context)
+
+    def post(self, request, pk):
+        comment = PostComment.objects.get(pk=pk)
+        post = get_object_or_404(Post, pk=comment.post.id)
+        form = CommentForm(request.POST, instance=comment)
+        if form.is_valid():
+            comment = form.save()
+           
+            return redirect('post_details', pk=post.id)
+        comments = post.comments.select_related('user').order_by('-created_at')
+        return render(request, self.post_details_template, {'form':form, 'post': post, 'comments': comments})
+        
+
+
+class DeleteComment(LoginRequiredMixin, View):
+    # change method to post
     def get(self, request, pk):
         comment = get_object_or_404(PostComment, pk=pk)
         post = get_object_or_404(Post, pk=comment.post.pk)
