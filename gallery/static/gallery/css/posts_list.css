@@ -1,18 +1,18 @@
 #posts-section {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 100%;
-    padding: 1rem;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .main-posts-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
 }
 
 .main-post-container {
@@ -43,13 +43,13 @@
   text-align: center;
   font-weight: bold;
 }
+
 .post-title p {
   margin: 0;
   padding: 0.5rem;
 }
 
-
-.reatings-container {
+.reatings-container{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -101,8 +101,6 @@
   color: var(--accent-hover);            /* same blue you had on <a>:hover */
 }
 
-
-
 .post-dislike {
   display: flex;
   flex-direction: row;
@@ -118,7 +116,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 .post-rating {
   padding: 0.5rem;
@@ -152,22 +149,21 @@
   align-items: center;
   padding: 1rem;
   gap: 1rem;
-  
 }
 
 .bublisher-img-container {
-    max-width: 3rem;
-    max-height: 3rem;
-    border-radius: 50%;
-    overflow: hidden;
-    object-fit: cover;
-    display: block;
+  max-width: 3rem;
+  max-height: 3rem;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  display: block;
 }
+
 .bublisher-img-container img {
   width: 100%;
-
 }
 
-.bublisher-container p{
+.bublisher-container p {
   margin: 0;
 }
