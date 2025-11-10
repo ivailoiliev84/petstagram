@@ -1,0 +1,75 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<section id="explore-section">
+    <div class='advice-title'>
+        <h1>🐾 Learn more about your pet 🐾</h1>
+    </div>
+
+    <div class="advice-pet-gallery">
+        <div class="advice-gallery-left">
+
+            <div class="advice-pet-image-container">
+                <div class="advice-pet-image">
+                    <img src="{% static 'home/images/dog_baby_explore_section.jpg' %}" alt="" />
+                </div>
+            </div>
+            
+            <div class="advice-pet-text">
+                <h3>Small Pet Care Guide</h3>
+                
+                <div class="intro">
+                    <p>
+                        Caring for a small pet can be a wonderful experience, but it is important to remember
+                        that <strong>every species—and even every breed—has its own unique needs</strong>.
+                        Before bringing a new pet home, take time to learn about its natural behavior, diet,
+                        and environment. What works for one type of pet may not be healthy for another.
+                    </p>
+                </div>
+
+                <h3>Understanding Your Pet's Specific Needs</h3>
+                <p>
+                    Small animals such as hamsters, rabbits, guinea pigs, chinchillas, rats, or gerbils each require
+                    <strong>specific food, cage size, bedding, toys, and social interaction</strong>.
+                    Some need a quiet space with deep bedding to burrow, while others need large enclosures
+                    with room to jump or run. Certain breeds have sensitive stomachs, special grooming needs,
+                    or require more companionship than others. Because of these differences, new owners should
+                    always research the exact breed they choose—not just the species in general.
+                </p>
+            </div>
+
+            
+            
+        </div>
+
+        <div class="advice-gallery-right">
+            
+            <div class="advice-pet-text">
+                <h3>Daily Care & Health Checks</h3>
+                    <p>
+                        Regular health checks are important. Small pets can hide illness, so pay attention to changes
+                        in eating, energy, weight, or behavior. Providing the right environment, proper nutrition,
+                        and enough enrichment helps your pet live a longer, happier life.
+                    </p>
+
+                <h3>Helping Your Pet Grow Happy & Healthy</h3>
+                <p>
+                    With patience, gentle handling, and the correct care, even the tiniest pet can grow into a
+                    healthy, friendly companion. Understanding their specific needs is the first step toward
+                    giving your new pet the best possible life.
+                </p>
+                <p>
+                    Providing consistent love and a safe environment will help your pet feel secure and thrive every day.
+                    The more time you spend learning your pet’s behavior and preferences, the easier it becomes to support their happiness and wellbeing.
+                </p>
+            </div>
+            <div class="advice-pet-image-container">
+                <div class="advice-pet-image">
+                    <img src="{% static 'home/images/cat_baby_explore_section.jpg' %}" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+       
+    </div>
+</section>
+{% endblock %}
