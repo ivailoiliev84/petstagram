@@ -6,7 +6,9 @@
 
         <div class="main-post-container">
             <div class="post-image-container">
+                <a href="{% url 'post_details' post.id %}">
                 <img src="{{ post.image.url }}" alt="">
+                </a>
             </div>
             <div class="post-title">
                 <p>{{ post.title }}</p>

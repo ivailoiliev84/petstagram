@@ -7,6 +7,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from accounts.forms import UserCreationForm, UserLoginForm, EditUserProfileForm, CustomPasswordChangeForm
 from accounts.models import UserProfile
+from gallery.models import Post
 from django.contrib.auth import get_user_model
 # Create your views here.
 
@@ -56,7 +57,9 @@ class UserProfileDetailsView(LoginRequiredMixin, View):
     
     def get(self, request, pk):
         profile = UserProfile.objects.get(user_id=pk)
-        context = {'profile': profile}
+        posts = Post.objects.filter(user=request.user)[:3]
+        
+        context = {'profile': profile, 'posts': posts}
         return render(request, self.profile_details_template, context)
      
 

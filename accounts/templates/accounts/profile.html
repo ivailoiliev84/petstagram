@@ -25,22 +25,41 @@
         </div>
     </div>
     <div class="profile-latest-posts">
-        {% if not last_posts %}
+        {% if not posts %}
         <h1>You don't have any posts yet</h1>
         <dif class="latest-post-container" >   
             <div class="latest-post-container-item">
-            <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
-            </div>
-            <div class="latest-post-container-item">
                 <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
             </div>
             <div class="latest-post-container-item">
                 <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
             </div>
-            {% else %}
-                <h1>You latest posts</h1>
-            {% endif %}
+            <div class="latest-post-container-item">
+                <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
+            </div>
         </div>
+        {% else %}
+            <h1>You latest posts</h1>
+            <dif class="latest-post-container" >  
+                {% for post in posts%}
+                    <div class="latest-post-container-item">
+                        <img src="{{ post.image.url}}" alt="">
+                    </div>
+                {% endfor %}
+                {% if posts|length == 1 %}
+                    <div class="latest-post-container-item">
+                        <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
+                    </div>
+                    <div class="latest-post-container-item">
+                        <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
+                    </div> 
+                {% elif  posts|length == 2%}
+                    <div class="latest-post-container-item">
+                        <img src="{% static 'accounts/images/empty_latest_post_img.png' %}" alt="">
+                    </div> 
+                {% endif %}
+            </div>
+        {% endif %}
     </div>
 </section>
 {% endblock %}
