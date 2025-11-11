@@ -19,3 +19,11 @@ class ExploreView(View):
     def get(self, request):
         
         return render(request, self.explore_template)
+    
+    
+class ContactView(View):
+    contact_us_template = 'home/contact_us.html'
+    
+    def get(self, request):
+        
+        return render(request, self.contact_us_template)

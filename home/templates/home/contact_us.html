@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section id="profile-section">
+
+    <div class="main-div-profile-info">
+        <div class="profile-image">
+            <img src="{% static 'home/images/ivo_image.jpg' %}" alt="">
+        </div>
+        <div class="profile-info">
+            <p>Name: Ivaylo Iliev</p>
+            <p>Email: ivohordda@gmail.com</p>
+            <p>Phone: +359 879 100 227</p>
+            <p>Profesion: Software Web Developer</p>
+            <p>Education : Software Engineer</p>
+        </div>
+        <div class="profile-edit-btn-container">
+            <a href="{% url 'profile_edit' request.user.id %}" class="btn btn-primary">
+                Edit Profile
+            </a>
+             <a href="{% url 'change_password'%}" class="btn btn-primary">
+                Change Password
+            </a>
+        </div>
+    </div>
+    <div class="profile-latest-posts">
+
+        <h1>Technologies I Used to Build This Project </h1>
+        <dif class="latest-post-container" >   
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/python-logo.png' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/django_icon.jpg' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/postgresql.png' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/HTML5-Logo.jpg' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/CSS3-Logo.jpg' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/bootstrap-icon.png' %}" alt="">
+            </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/cloudinary.jpeg' %}" alt="">
+            </div>
+        </div>
+      
+    </div>
+</section>
+{% endblock %}
