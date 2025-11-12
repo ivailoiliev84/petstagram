@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from cloudinary.models import CloudinaryField
+# from cloudinary.models import CloudinaryField
 # Create your models here.
 
 UserModel = get_user_model()
@@ -8,7 +8,7 @@ UserModel = get_user_model()
 class Post(models.Model):
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
 
-    image = CloudinaryField()
+    image = models.ImageField(upload_to='post/', blank=True, null=True)
 
     title = models.CharField (max_length=30)
     description = models.TextField(max_length=200)

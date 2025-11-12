@@ -3,7 +3,8 @@
 <section id="posts-comment-section">
     <div class="main-post-comment-container">
         <div class="post-comment-image-container">
-            <img src="{{ post.image.url }}" alt="" />
+            <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static 'gallery/images/empty_post_img.png' %}{% endif %}">
+
         </div>
         <div class="post-comment-title">
             <h1>{{ post.title }}</h1>

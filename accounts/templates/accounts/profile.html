@@ -43,7 +43,7 @@
             <dif class="latest-post-container" >  
                 {% for post in posts%}
                     <div class="latest-post-container-item">
-                        <img src="{{ post.image.url}}" alt="">
+                        <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static 'gallery/images/empty_post_img.png' %}{% endif %}">
                     </div>
                 {% endfor %}
                 {% if posts|length == 1 %}

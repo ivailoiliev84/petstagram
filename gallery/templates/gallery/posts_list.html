@@ -7,7 +7,7 @@
         <div class="main-post-container">
             <div class="post-image-container">
                 <a href="{% url 'post_details' post.id %}">
-                <img src="{{ post.image.url }}" alt="">
+                    <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static 'gallery/images/empty_post_img.png' %}{% endif %}" loading="lazy">
                 </a>
             </div>
             <div class="post-title">
