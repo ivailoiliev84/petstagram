@@ -14,7 +14,7 @@ class Post(models.Model):
     description = models.TextField(max_length=200)
 
     created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
 
 
 class PostComment(models.Model):
