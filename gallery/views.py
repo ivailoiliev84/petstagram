@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 from django.views import View
-from django.db.models import Count, OuterRef
+from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
 from gallery.forms import CreatePostForm, CommentForm
 from gallery.models import Post, PostComment, PostLike, PostDislike
+from gallery.services.moderation import is_image_safe
 # Create your views here.
-
 
 class Gallery(LoginRequiredMixin, View):
     
@@ -20,8 +21,18 @@ class Gallery(LoginRequiredMixin, View):
                likes_count = Count('likes', distinct=True),
                dislikes_count = Count('dislikes', distinct=True)
             )
+            .order_by("-created_at")
         )
-        context = {'posts': posts}
+        
+        paginator = Paginator(posts, 6)  # 6 posts per page
+
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        
+        context = {
+            'posts': page_obj,
+            'page_obj': page_obj,
+        }
 
         return render(request, self.gallery_template, context)
 
@@ -36,9 +47,16 @@ class CreatePost(LoginRequiredMixin, View):
     def post(self, request):
         form = CreatePostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.user = request.user
-            post.save()
+            image = form.cleaned_data["image"]
+            if not is_image_safe(image):
+                form.add_error(
+                    "image",
+                    "This image is not allowed."
+                )
+            else:
+                post = form.save(commit=False)
+                post.user = request.user
+                post.save()
 
             return redirect('gallery')
         context = {'form': form}
