@@ -1,7 +1,8 @@
 import base64
 from openai import OpenAI
+from django.conf import settings
 
-client = OpenAI()
+client = OpenAI(api_key=settings.OPEN_AI_KEY)
 
 def is_image_safe(image):
     encoded = base64.b64encode(image.read()).decode("utf-8")

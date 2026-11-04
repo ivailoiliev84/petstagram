@@ -14,10 +14,12 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 from pathlib import Path
+from dotenv import load_dotenv
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-n*$4)k3b)%t%&e=cj-(_ia3r(8c=xru1vp3%!7w!e&p7*o$ezw'
-
+OPEN_AI_KEY = os.getenv("OPEN_AI_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

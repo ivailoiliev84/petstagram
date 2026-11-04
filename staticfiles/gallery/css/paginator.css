@@ -1,0 +1,48 @@
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem 0;
+}
+
+.pagination a {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--accent);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: var(--accent);
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.pagination a:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+.pagination span {
+  padding: 0.6rem 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 37.5rem) {
+  .pagination {
+    gap: 0.3rem;
+    padding: 0.5rem;
+  }
+
+  .pagination a,
+  .pagination span {
+    padding: 0.5rem 0.7rem;
+    font-size: 0.9rem;
+  }
+}

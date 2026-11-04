@@ -1,0 +1,69 @@
+:root { --header-h: 64px; --footer-h: 80px; } /* adjust to your real sizes */
+
+/* Let the main area grow and push footer down */
+main {
+  flex: 1;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+        "Apple Color Emoji", "Segoe UI Emoji";
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.5;
+}
+
+/* Your existing content layout */
+#main-section {
+  min-height: calc(100svh - var(--header-h) - var(--footer-h));
+  max-width: 1270px;
+  margin: 0 auto;
+  padding: 0 rem;
+  padding-bottom: var(--footer-h);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+
+
+button,
+.btn,
+button.btn {
+  background-color: var(--accent);
+  color: var(--accent-text);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+button:hover,
+.btn:hover {
+  background-color: var(--accent-hover);
+}
+
+button:active,
+.btn:active {
+  transform: scale(0.98);
+}
+
+button:disabled,
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

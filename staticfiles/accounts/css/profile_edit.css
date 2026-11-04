@@ -1,0 +1,3 @@
+#id_description {
+    textarea-rows-3 { min-height: 0; height: 4.5em; } /* ≈ 3 rows */
+}

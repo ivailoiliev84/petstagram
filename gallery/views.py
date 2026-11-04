@@ -58,7 +58,7 @@ class CreatePost(LoginRequiredMixin, View):
                 post.user = request.user
                 post.save()
 
-            return redirect('gallery')
+                return redirect('gallery')
         context = {'form': form}
         return render(request, self.create_post_template, context)
 
