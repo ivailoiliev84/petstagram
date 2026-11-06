@@ -59,22 +59,21 @@
             <div class="post-comment-gallery-link">
                 <a href="{% url 'gallery' %}"><i class="fa-solid fa-image"></i></a>
             </div>
-            {% if request.user == post.user %}
-            <div class="post-comment-edit-link">
-                <a href="{% url 'edit_post' post.id %}"><i class="fa-solid fa-file-pen"></i></a>
-            </div>
-            <div class="post-comment-delete-link">
-                {% if post.user_id == request.user.id %}
-                    <div class="post-delete">
-                        <form method="POST" action="{% url 'delete_post' post.pk %}">
-                            {% csrf_token %}
-                            <button type="submit">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </form>
-                    </div>
-                {% endif %}
-            </div>
+            {% if post.user_id == request.user.id %}
+                <div class="post-comment-edit-link">
+                    <a href="{% url 'edit_post' post.pk %}">
+                        <i class="fa-solid fa-file-pen"></i>
+                    </a>
+                </div>
+
+                <div class="post-comment-delete-link">
+                    <form method="POST" action="{% url 'delete_post' post.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" aria-label="Delete post">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </form>
+                </div>
             {% endif %}
         </div>
         <div class="post-comment-description-container">

@@ -160,9 +160,14 @@ class EditCommentView(LoginRequiredMixin, View):
         return render(request, self.edit_comment_template, context)     
 
 class DeletePost(LoginRequiredMixin, View):
-    
-    def get(self, request, pk):
-        post = get_object_or_404(Post, pk=pk, user=request.user)
+
+    def post(self, request, pk):
+        post = get_object_or_404(
+            Post,
+            pk=pk,
+            user=request.user
+        )
+
         post.delete()
         return redirect('gallery')
     

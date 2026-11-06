@@ -89,15 +89,16 @@
   align-items: center;
 }
 
-.post-delete button {
+.post-comment-delete-link button {
     background: none;
     border: none;
     padding: 0;
     color: var(--bs-link-color);
     cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.post-delete button:hover {
+.post-comment-delete-link button:hover {
     color: #dc3545;
     transform: scale(1.15);
 }
