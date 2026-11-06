@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 <section id="profile-section">
-
     <div class="main-div-profile-info">
         <div class="profile-image">
             <img src="{% static 'home/images/ivo_image.jpg' %}" alt="">
@@ -14,18 +13,10 @@
             <p>Phone: +359 879 100 227</p>
             <p>Profesion: Software Web Developer</p>
             <p>Education : Software Engineer</p>
-        </div>
-        <div class="profile-edit-btn-container">
-            <a href="{% url 'profile_edit' request.user.id %}" class="btn btn-primary">
-                Edit Profile
-            </a>
-             <a href="{% url 'change_password'%}" class="btn btn-primary">
-                Change Password
-            </a>
+            <p>Experience : 5 + years in Web Development</p>
         </div>
     </div>
     <div class="profile-latest-posts">
-
         <h1>Technologies I Used to Build This Project </h1>
         <dif class="latest-post-container" >   
             <div class="latest-post-container-item">
@@ -49,6 +40,10 @@
             <div class="latest-post-container-item">
                 <img src="{% static 'home/images/cloudinary.jpeg' %}" alt="">
             </div>
+            <div class="latest-post-container-item">
+                <img src="{% static 'home/images/openai.webp' %}" alt="">
+            </div>
+       
         </div>
       
     </div>

@@ -1,17 +1,25 @@
-{% extends 'base.html' %} {% load static %} {% block content %}
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
 
 <section id="posts-comment-section">
     <div class="main-post-comment-container">
+
         <div class="post-comment-image-container">
-            <img src="{{ post.image.url }}" alt="" />
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
         </div>
+
         <div class="post-comment-title">
             <h1>{{ post.title }}</h1>
         </div>
+
         <div class="reatings-comment-container">
+
             <div class="post-comment-like">
                 <div class="like">
-                    <form method="post" action="{% url 'post_like' post.id %}">
+                    <form method="post" action="{% url 'post_like' post.pk %}">
                         {% csrf_token %}
                         <button type="submit" class="icon-btn" aria-label="Like">
                             <i class="fa-sharp fa-solid fa-thumbs-up"></i>
@@ -19,15 +27,15 @@
                     </form>
                 </div>
                 <div class="post-comment-like-count">
-                    <span>{{ post.likes_count}}</span>
+                    <span>{{ post.likes_count }}</span>
                 </div>
             </div>
 
             <div class="post-comment-dislike">
                 <div class="dislike">
-                    <form method="post" action="{% url 'post_dislike' post.id %}">
+                    <form method="post" action="{% url 'post_dislike' post.pk %}">
                         {% csrf_token %}
-                        <button type="submit" class="icon-btn" aria-label="Like">
+                        <button type="submit" class="icon-btn" aria-label="Dislike">
                             <i class="fa-solid fa-thumbs-down"></i>
                         </button>
                     </form>
@@ -39,12 +47,12 @@
 
             <div class="post-comment">
                 <div class="comment">
-                    <a href="{% url 'post_details' post.id %}"
-                        ><i class="fa-solid fa-pen-to-square"></i
-                    ></a>
+                    <a href="{% url 'post_details' post.pk %}">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
                 </div>
                 <div class="post-like-count">
-                    <span>{{ post.comments_count}}</span>
+                    <span>{{ post.comments_count }}</span>
                 </div>
             </div>
 
@@ -57,71 +65,106 @@
                     <i class="fa-regular fa-star"></i>
                 </div>
             </div>
+
             <div class="post-comment-gallery-link">
-                <a href="{% url 'gallery' %}"
-                    ><i class="fa-solid fa-image"></i
-                ></a>
+                <a href="{% url 'gallery' %}">
+                    <i class="fa-solid fa-image"></i>
+                </a>
             </div>
+
             {% if request.user == post.user %}
-            <div class="post-comment-edit-link">
-                <a href="{% url 'edit_post' post.id %}"
-                    ><i class="fa-solid fa-file-pen"></i
-                ></a>
-            </div>
-            <div class="post-comment-delete-link">
-                <a href="{% url 'delete_post' post.id %}"
-                    ><i class="fa-solid fa-trash"></i
-                ></a>
-            </div>
+                <div class="post-comment-edit-link">
+                    <a href="{% url 'edit_post' post.pk %}">
+                        <i class="fa-solid fa-file-pen"></i>
+                    </a>
+                </div>
+
+                <div class="post-comment-delete-link">
+                    <a href="{% url 'delete_post' post.pk %}">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </div>
             {% endif %}
+
         </div>
+
         <div class="post-comment-description-container">
             <p>{{ post.description }}</p>
         </div>
 
         <div class="comeents-list">
-                <div class="comment-container">
-                    <div class="comment-image">
-                        {% if comment.user.userprofile.profile_picture %}
+
+            <div class="comment-container">
+
+                <div class="comment-image">
+                    {% if comment.user.userprofile.profile_picture %}
                         <img
                             src="{{ comment.user.userprofile.profile_picture.url }}"
-                            alt=""
+                            alt="Profile picture"
                         />
-                        {% else %}
+                    {% else %}
                         <img
                             src="{% static 'accounts/images/empty_profile_img.jpg' %}"
-                            alt=""
+                            alt="Default profile picture"
                         />
-                        {% endif %}
-                    </div>
-                    <div class="comment-owner">{{ comment.user }}</div>
-                    
-                    {% if comment.user == request.user %}
-                        <div class="comment-edit">
-                            <a href="{% url 'edit_comment' comment.id %}"
-                                ><i class="fa-solid fa-file-pen"></i
-                            ></a>
-                        </div>
-                        <div class="comment-delete">
-                            <a href="{% url 'delete_comment' comment.id %}"
-                                ><i class="fa-solid fa-trash"></i
-                            ></a>
-                        </div>
-                    
                     {% endif %}
                 </div>
-                <div class="comment-tetx">
-                    <p>{{ comment.text }}</p>
+
+                <div class="comment-owner">
+                    {{ comment.user }}
                 </div>
-                <form method="POST" action="{% url 'edit_comment' comment.id %}">
-            {% csrf_token %} 
-            {{ form.text }}
-            <!-- single-line input -->
-            <button class="comment-button" type="submit">Submit</button>
-        </form>
+
+                {% if comment.user == request.user %}
+                    <div class="comment-edit">
+                        <a href="{% url 'edit_comment' comment.pk %}">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </a>
+                    </div>
+
+                    <div class="comment-delete">
+                        <a href="{% url 'delete_comment' comment.pk %}">
+                            <i class="fa-solid fa-trash"></i>
+                        </a>
+                    </div>
+                {% endif %}
+
+            </div>
+
+            <div class="comment-tetx">
+                <p>{{ comment.text }}</p>
+            </div>
+
+            <!-- EDIT COMMENT FORM -->
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {{ form.text }}
+
+                {% if form.text.errors %}
+                    <div class="form-errors">
+                        {% for error in form.text.errors %}
+                            <p class="text-danger mt-2">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        {% for error in form.non_field_errors %}
+                            <p class="error-message">{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <button class="comment-button" type="submit">
+                    Submit
+                </button>
+            </form>
+
         </div>
 
-        
     </div>
 </section>
+
 {% endblock %}

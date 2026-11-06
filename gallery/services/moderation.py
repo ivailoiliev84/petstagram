@@ -31,3 +31,42 @@ def is_image_safe(image):
         return False
 
     return True
+
+
+def is_text_safe(text: str) -> bool:
+    response = client.moderations.create(
+        model="omni-moderation-latest",
+        input=text,
+    )
+
+    result = response.results[0]
+
+    return not result.flagged
+
+
+def moderate_form(form, changed_only=False):
+    for field in ("image", "title", "description", "text"):
+
+        if field not in form.fields:
+            continue
+
+        if changed_only and field not in form.changed_data:
+            continue
+
+        value = form.cleaned_data.get(field)
+
+        if value is None or value == "":
+            continue
+
+        if field == "image":
+            is_safe = is_image_safe(value)
+        else:
+            is_safe = is_text_safe(value)
+
+        if not is_safe:
+            form.add_error(
+                field,
+                f"This {field} is not allowed."
+            )
+
+    return not form.errors

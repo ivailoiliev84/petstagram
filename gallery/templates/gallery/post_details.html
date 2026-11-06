@@ -64,7 +64,16 @@
                 <a href="{% url 'edit_post' post.id %}"><i class="fa-solid fa-file-pen"></i></a>
             </div>
             <div class="post-comment-delete-link">
-                <a href="{% url 'delete_post' post.id %}"><i class="fa-solid fa-trash"></i></a>
+                {% if post.user_id == request.user.id %}
+                    <div class="post-delete">
+                        <form method="POST" action="{% url 'delete_post' post.pk %}">
+                            {% csrf_token %}
+                            <button type="submit">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                {% endif %}
             </div>
             {% endif %}
         </div>
@@ -77,23 +86,31 @@
             <div class="comment-container">
                 <div class="comment-image">
                     {% if comment.user.userprofile.profile_picture %}
-                    <img src="{{ comment.user.userprofile.profile_picture.url }}" alt="" />
+                        <img src="{{ comment.user.userprofile.profile_picture.url }}" alt="" />
                     {% else %}
-                    <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="" />
+                        <img src="{% static 'accounts/images/empty_profile_img.jpg' %}" alt="" />
                     {% endif %}
                 </div>
                 <div class="comment-owner">{{ comment.user }}</div>
           
-                    {% if comment.user == request.user %}
+                {% if comment.user_id == request.user.id %}
                     <div class="comment-edit">
-                        <a href="{% url 'edit_comment' comment.id %}"><i class="fa-solid fa-file-pen"></i></a>
+                        <a href="{% url 'edit_comment' comment.id %}">
+                            <i class="fa-solid fa-file-pen"></i>
+                        </a>
                     </div>
+
                     <div class="comment-delete">
-                        <a href="{% url 'delete_comment' comment.id %}"><i class="fa-solid fa-trash"></i></a>
+                        <form method="POST" action="{% url 'delete_comment' comment.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="delete-btn">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </form>
                     </div>
-                    {% endif %}
+                {% endif %}
           
-            </div>
+                </div>
             <div class="comment-tetx">
                 <p>{{ comment.text }}</p>
             </div>
@@ -101,8 +118,16 @@
         </div>
 
         <form method="POST" action="{% url 'post_details' post.id %}">
-            {% csrf_token %} {{ form.text }}
-            <!-- single-line input -->
+            {% csrf_token %}
+
+            {{ form.text }}
+
+            {% for error in form.text.errors %}
+                <div class="text-danger mt-2">
+                    {{ error }}
+                </div>
+            {% endfor %}
+
             <button class="comment-button" type="submit">Submit</button>
         </form>
     </div>

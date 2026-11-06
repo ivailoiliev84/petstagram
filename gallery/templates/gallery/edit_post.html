@@ -5,9 +5,25 @@
     <div class="col-md-6">
       <div class="card shadow p-4 rounded-4">
         <h3 class="text-center mb-4">🐾 Edit Post🐾</h3>
-        <form method="POST" action="{% url 'edit_post'  post.id %}" , enctype="multipart/form-data">
+        <form method="POST" action="{% url 'edit_post'  post.id %}"  enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form.as_p }} <!-- or use crispy form rendering -->
+          {% for field in form %}
+              <p>
+                  {{ field.label_tag }}
+                  {{ field }}
+              </p>
+              {% for error in field.errors %}
+                  <div class="text-danger mt-2">
+                      {{ error }}
+                  </div>
+              {% endfor %}
+          {% endfor %}
+          <!-- Erros in the form -->
+          {% for error in form.non_field_errors %}
+              <div class="text-danger mt-2">
+                  {{ error }}
+              </div>
+          {% endfor %}
           <button type="submit" class="btn btn-primary w-100 mt-3">
             Edit
           </button>
