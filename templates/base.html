@@ -20,16 +20,19 @@
     <link rel="stylesheet" href="{% static '/gallery/css/gallery.css' %}" />
     <link rel="stylesheet" href="{% static '/gallery/css/posts_list.css' %}" />
     <link rel="stylesheet" href="{% static '/gallery/css/post_details.css' %}" />
-     <link rel="stylesheet" href="{% static '/gallery/css/paginator.css' %}" />
+    <link rel="stylesheet" href="{% static '/gallery/css/paginator.css' %}" />
     <link rel="stylesheet" href="{% static 'css/footer.css'%}" />
+    <link rel="stylesheet" href="{% static 'chatbot/css/chat.css' %}">
 </head>
 
 <body>
     {% include 'navigation.html' %}
     <main id="main-section" class="profile-main">
-        {% block content %} {% endblock %}
+        {% block content %} 
+        {% endblock %}
     </main>
     {% include 'footer.html' %}
+    {% comment %} {% include 'chatbot/chat.html' %} {% endcomment %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

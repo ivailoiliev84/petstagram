@@ -4,9 +4,11 @@ from django.views import View
 from django.db.models import Count
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, get_object_or_404
+from django.db import transaction
 from gallery.forms import CreatePostForm, CommentForm
 from gallery.models import Post, PostComment, PostLike, PostDislike
 from gallery.services.moderation import moderate_form
+from gallery.services.file_management import schedule_file_deletion
 
 # Create your views here.
 
@@ -111,9 +113,14 @@ class EditPost(LoginRequiredMixin, View):
     
     def post(self, request, pk):
         post = get_object_or_404(Post, pk=pk, user=request.user)
+        old_post_image = post.image
         form = CreatePostForm(request.POST, request.FILES, instance=post)
         if form.is_valid() and moderate_form(form, changed_only=True):
-            form.save()
+            image_changed = "image" in form.changed_data
+            with transaction.atomic():
+                if image_changed:
+                    schedule_file_deletion(old_post_image)
+                form.save()
             return redirect('post_details', pk=post.pk)
         return render(request, self.edit_post_template, {'form': form, 'post': post})
     
@@ -162,13 +169,14 @@ class EditCommentView(LoginRequiredMixin, View):
 class DeletePost(LoginRequiredMixin, View):
 
     def post(self, request, pk):
-        post = get_object_or_404(
-            Post,
-            pk=pk,
-            user=request.user
-        )
-
-        post.delete()
+        with transaction.atomic():
+            post = get_object_or_404(
+                Post,
+                pk=pk,
+                user=request.user
+            )
+            schedule_file_deletion(post.image)
+            post.delete()
         return redirect('gallery')
     
 class DeleteComment(LoginRequiredMixin, View):

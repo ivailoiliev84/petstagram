@@ -1,0 +1,148 @@
+
+#pet-chat {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 1000;
+}
+
+#chat-toggle {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+#chat-widget {
+    position: absolute;
+    right: 0;
+    bottom: 75px;
+    width: 380px;
+    max-width: calc(100vw - 40px);
+    height: min(520px, calc(100dvh - 120px));
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chat-widget[hidden] {
+    display: none;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    background: #2563eb;
+    color: white;
+}
+
+.chat-header h3 {
+    margin: 0;
+    font-size: 17px;
+}
+
+#chat-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+#chat-messages {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 14px;
+}
+
+.chat-message {
+    padding: 10px 14px;
+    border-radius: 12px;
+    max-width: 85%;
+    overflow-wrap: anywhere;
+}
+
+.chat-message.user {
+    align-self: flex-end;
+    background: #dbeafe;
+}
+
+.chat-message.assistant {
+    align-self: flex-start;
+    background: #f3f4f6;
+}
+
+.chat-message.error {
+    align-self: center;
+    color: #b91c1c;
+}
+
+#chat-form {
+    display: flex;
+    gap: 8px;
+    padding: 12px;
+    border-top: 1px solid #eee;
+}
+
+#chat-input {
+    flex: 1;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+#send-button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+/* Mobile layout */
+@media (max-width: 600px) {
+    #pet-chat {
+        right: 12px;
+        bottom: 12px;
+    }
+
+    #chat-widget {
+        position: fixed;
+        inset: 0;
+        width: 100%;
+        max-width: none;
+        height: 100dvh;
+        border: none;
+        border-radius: 0;
+    }
+
+    #chat-form {
+        padding-bottom: max(
+            12px,
+            env(safe-area-inset-bottom)
+        );
+    }
+
+    #chat-toggle {
+        width: 54px;
+        height: 54px;
+    }
+}

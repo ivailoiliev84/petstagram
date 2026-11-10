@@ -26,7 +26,7 @@ load_dotenv()
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n*$4)k3b)%t%&e=cj-(_ia3r(8c=xru1vp3%!7w!e&p7*o$ezw'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 OPEN_AI_KEY = os.getenv("OPEN_AI_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -53,6 +53,7 @@ PROJECTS_APPS = [
     'accounts',
     'home',
     'gallery',
+    'chatbot'
 ]
 
 THIRD_PART_APPS = [
@@ -177,3 +178,23 @@ cloudinary.config(
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 LOGIN_URL = "login"
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "file": {
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "logs/petstagram.log",
+            "level": "ERROR",
+        },
+    },
+    "loggers": {
+        "gallery": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": False,
+        },
+    },
+}
