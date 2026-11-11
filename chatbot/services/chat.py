@@ -11,7 +11,7 @@ class ChatService():
     
     @staticmethod
     def  get_conversation(user, conversation_id):
-        return Conversation.objects.filter(user=user, id=conversation_id)
+        return Conversation.objects.filter(user=user, id=conversation_id).get()
     
     @staticmethod
     def add_message(conversation, role, content):

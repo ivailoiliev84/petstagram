@@ -21,22 +21,20 @@ from dotenv import load_dotenv
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv()
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
-OPEN_AI_KEY = os.getenv("OPEN_AI_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+CHATBOT_PROVIDER = os.getenv("CHATBOT_PROVIDER", "mock")
+OPENAI_CHAT_MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4.1-mini")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # For mobile testing
 ALLOWED_HOSTS = ["*"]  # or "192.168.0.142" if you’ll use Ethernet
 CSRF_TRUSTED_ORIGINS = ["http://192.168.0.12:8000"]  # Django 4+
-
-
-
 
 # Application definition
 
@@ -196,5 +194,11 @@ LOGGING = {
             "level": "ERROR",
             "propagate": False,
         },
+        "chatbot": {
+            "handlers": ["file"],
+            "level": "ERROR",
+            "propagate": False,
+        },
     },
+    
 }

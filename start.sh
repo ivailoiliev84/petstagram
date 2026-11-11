@@ -43,7 +43,9 @@ gunicorn core.wsgi:application \
     --workers 3 \
     --timeout 120 \
     --daemon \
-    --pid "$PID_FILE"
+    --pid "$PID_FILE" \
+    --access-logfile logs/gunicorn-access.log
+
 
 echo "Gunicorn started."
 echo "Petstagram system started successfully."

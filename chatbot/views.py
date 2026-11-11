@@ -3,14 +3,23 @@ from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views import View
-
 from chatbot.models import Conversation
 from chatbot.services.chat import ChatService
 from chatbot.services.providers.mock import MockLLMProvider
+from chatbot.services.providers.openai_provider import OpenAIProvider
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class ChatMessageView(LoginRequiredMixin, View):
     http_method_names = ["post"]
+    
+    def handle_no_permission(self):
+        return JsonResponse(
+            {"error": "Authentication required"},
+            status=401,
+        )
 
     def post(self, request):
         try:
@@ -66,15 +75,19 @@ class ChatMessageView(LoginRequiredMixin, View):
                 user=request.user,
             )
 
-        provider = MockLLMProvider()
 
         try:
+            if settings.CHATBOT_PROVIDER == "openai":
+                provider = OpenAIProvider()
+            else:
+                provider = MockLLMProvider()
             answer = ChatService.send_message(
                 conversation=conversation,
                 content=content,
                 provider=provider,
             )
         except Exception:
+            logger.exception("Chatbot failed to generate response")
             return JsonResponse(
                 {"error": "Unable to generate AI response"},
                 status=503,

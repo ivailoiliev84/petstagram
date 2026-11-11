@@ -3,6 +3,9 @@ const chatForm = document.getElementById("chat-form");
 const chatInput = document.getElementById("chat-input");
 const chatMessages = document.getElementById("chat-messages");
 const sendButton = document.getElementById("send-button");
+const chatToggle = document.getElementById("chat-toggle");
+const chatClose = document.getElementById("chat-close");
+const chatWidget = document.getElementById("chat-widget");
 
 const csrfToken = chatForm.querySelector(
     "[name=csrfmiddlewaretoken]"
@@ -22,6 +25,25 @@ function appendMessage(role, content) {
     chatMessages.appendChild(messageElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
+
+chatToggle.addEventListener("click", () => {
+    chatWidget.hidden = !chatWidget.hidden;
+
+    chatToggle.setAttribute(
+        "aria-expanded",
+        String(!chatWidget.hidden)
+    );
+
+    if (!chatWidget.hidden) {
+        chatInput.focus();
+    }
+});
+
+chatClose.addEventListener("click", () => {
+    chatWidget.hidden = true;
+    chatToggle.setAttribute("aria-expanded", "false");
+    chatToggle.focus();
+});
 
 chatForm.addEventListener("submit", async (event) => {
     event.preventDefault();
