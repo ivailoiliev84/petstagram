@@ -33,8 +33,17 @@ OPENAI_CHAT_MODEL = os.getenv("OPENAI_CHAT_MODEL", "gpt-4.1-mini")
 DEBUG = True
 
 # For mobile testing
-ALLOWED_HOSTS = ["*"]  # or "192.168.0.142" if you’ll use Ethernet
-CSRF_TRUSTED_ORIGINS = ["http://192.168.0.12:8000"]  # Django 4+
+#ALLOWED_HOSTS = ["*"]  # or "192.168.0.142" if you’ll use Ethernet
+ALLOWED_HOSTS = ["petstagram.duckdns.org"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://petstagram.duckdns.org",
+]
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 
